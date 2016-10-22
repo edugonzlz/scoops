@@ -13,6 +13,8 @@
 		34A58E8D1DBB6984000B2DE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34A58E8C1DBB6984000B2DE4 /* Assets.xcassets */; };
 		34A58E901DBB6984000B2DE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A58E8E1DBB6984000B2DE4 /* LaunchScreen.storyboard */; };
 		34A58E991DBB70B0000B2DE4 /* MicrosoftAzureMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A58E981DBB70B0000B2DE4 /* MicrosoftAzureMobile.framework */; };
+		34A58EA01DBB7A84000B2DE4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A58E9F1DBB7A84000B2DE4 /* WebKit.framework */; };
+		34A58EA21DBBC598000B2DE4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A58EA11DBBC598000B2DE4 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		34A58E911DBB6984000B2DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34A58E971DBB705B000B2DE4 /* scoops-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "scoops-Bridging-Header.h"; sourceTree = "<group>"; };
 		34A58E981DBB70B0000B2DE4 /* MicrosoftAzureMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftAzureMobile.framework; sourceTree = "<group>"; };
+		34A58E9F1DBB7A84000B2DE4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		34A58EA11DBBC598000B2DE4 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34A58EA01DBB7A84000B2DE4 /* WebKit.framework in Frameworks */,
 				34A58E991DBB70B0000B2DE4 /* MicrosoftAzureMobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +76,7 @@
 		34A58E9A1DBB70F0000B2DE4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				34A58EA11DBBC598000B2DE4 /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -106,6 +112,7 @@
 		34A58E9E1DBB7130000B2DE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				34A58E9F1DBB7A84000B2DE4 /* WebKit.framework */,
 				34A58E981DBB70B0000B2DE4 /* MicrosoftAzureMobile.framework */,
 			);
 			name = Frameworks;
@@ -184,6 +191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34A58EA21DBBC598000B2DE4 /* Post.swift in Sources */,
 				34A58E881DBB6984000B2DE4 /* ViewController.swift in Sources */,
 				34A58E861DBB6984000B2DE4 /* AppDelegate.swift in Sources */,
 			);
