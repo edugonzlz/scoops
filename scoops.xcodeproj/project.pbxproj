@@ -15,6 +15,11 @@
 		34A58E991DBB70B0000B2DE4 /* MicrosoftAzureMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A58E981DBB70B0000B2DE4 /* MicrosoftAzureMobile.framework */; };
 		34A58EA01DBB7A84000B2DE4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34A58E9F1DBB7A84000B2DE4 /* WebKit.framework */; };
 		34A58EA21DBBC598000B2DE4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A58EA11DBBC598000B2DE4 /* Post.swift */; };
+		34A58EA41DBBD015000B2DE4 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A58EA31DBBD015000B2DE4 /* Folder.swift */; };
+		34A58EB21DBBD48F000B2DE4 /* bridging.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A58EB11DBBD48F000B2DE4 /* bridging.m */; };
+		34A58EB41DBBD4B4000B2DE4 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A58EB31DBBD4B4000B2DE4 /* Settings.swift */; };
+		34A58EB61DBBDBFF000B2DE4 /* JSONProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A58EB51DBBDBFF000B2DE4 /* JSONProcess.swift */; };
+		34A58EB81DBBDCCD000B2DE4 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A58EB71DBBDCCD000B2DE4 /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,11 +29,17 @@
 		34A58E8A1DBB6984000B2DE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		34A58E8C1DBB6984000B2DE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34A58E8F1DBB6984000B2DE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		34A58E911DBB6984000B2DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		34A58E971DBB705B000B2DE4 /* scoops-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "scoops-Bridging-Header.h"; sourceTree = "<group>"; };
+		34A58E911DBB6984000B2DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = scoops/Info.plist; sourceTree = "<group>"; };
 		34A58E981DBB70B0000B2DE4 /* MicrosoftAzureMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftAzureMobile.framework; sourceTree = "<group>"; };
 		34A58E9F1DBB7A84000B2DE4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		34A58EA11DBBC598000B2DE4 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		34A58EA31DBBD015000B2DE4 /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		34A58EAF1DBBD48E000B2DE4 /* scoops-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "scoops-Bridging-Header.h"; path = "scoops/scoops-Bridging-Header.h"; sourceTree = "<group>"; };
+		34A58EB01DBBD48F000B2DE4 /* bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bridging.h; path = scoops/bridging.h; sourceTree = "<group>"; };
+		34A58EB11DBBD48F000B2DE4 /* bridging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = bridging.m; path = scoops/bridging.m; sourceTree = "<group>"; };
+		34A58EB31DBBD4B4000B2DE4 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		34A58EB51DBBDBFF000B2DE4 /* JSONProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONProcess.swift; sourceTree = "<group>"; };
+		34A58EB71DBBDCCD000B2DE4 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +60,6 @@
 			children = (
 				34A58E9E1DBB7130000B2DE4 /* Frameworks */,
 				34A58E841DBB6984000B2DE4 /* scoops */,
-				34A58E9D1DBB7108000B2DE4 /* Utils */,
 				34A58E831DBB6984000B2DE4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,7 +75,9 @@
 		34A58E841DBB6984000B2DE4 /* scoops */ = {
 			isa = PBXGroup;
 			children = (
+				34A58EB91DBC0551000B2DE4 /* Others */,
 				34A58E851DBB6984000B2DE4 /* AppDelegate.swift */,
+				34A58E9D1DBB7108000B2DE4 /* Utils */,
 				34A58E9A1DBB70F0000B2DE4 /* Model */,
 				34A58E9C1DBB70FF000B2DE4 /* Controller */,
 				34A58E9B1DBB70F9000B2DE4 /* View */,
@@ -77,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				34A58EA11DBBC598000B2DE4 /* Post.swift */,
+				34A58EA31DBBD015000B2DE4 /* Folder.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -84,7 +97,6 @@
 		34A58E9B1DBB70F9000B2DE4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				34A58E871DBB6984000B2DE4 /* ViewController.swift */,
 				34A58E891DBB6984000B2DE4 /* Main.storyboard */,
 				34A58E8C1DBB6984000B2DE4 /* Assets.xcassets */,
 				34A58E8E1DBB6984000B2DE4 /* LaunchScreen.storyboard */,
@@ -95,6 +107,7 @@
 		34A58E9C1DBB70FF000B2DE4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				34A58E871DBB6984000B2DE4 /* ViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -102,11 +115,11 @@
 		34A58E9D1DBB7108000B2DE4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				34A58E971DBB705B000B2DE4 /* scoops-Bridging-Header.h */,
-				34A58E911DBB6984000B2DE4 /* Info.plist */,
+				34A58EB31DBBD4B4000B2DE4 /* Settings.swift */,
+				34A58EB51DBBDBFF000B2DE4 /* JSONProcess.swift */,
+				34A58EB71DBBDCCD000B2DE4 /* Errors.swift */,
 			);
 			name = Utils;
-			path = scoops;
 			sourceTree = "<group>";
 		};
 		34A58E9E1DBB7130000B2DE4 /* Frameworks */ = {
@@ -116,6 +129,18 @@
 				34A58E981DBB70B0000B2DE4 /* MicrosoftAzureMobile.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34A58EB91DBC0551000B2DE4 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				34A58E911DBB6984000B2DE4 /* Info.plist */,
+				34A58EB01DBBD48F000B2DE4 /* bridging.h */,
+				34A58EB11DBBD48F000B2DE4 /* bridging.m */,
+				34A58EAF1DBBD48E000B2DE4 /* scoops-Bridging-Header.h */,
+			);
+			name = Others;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +176,7 @@
 					34A58E811DBB6984000B2DE4 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = CBMDJ4F8QJ;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -191,9 +217,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34A58EB41DBBD4B4000B2DE4 /* Settings.swift in Sources */,
 				34A58EA21DBBC598000B2DE4 /* Post.swift in Sources */,
+				34A58EB21DBBD48F000B2DE4 /* bridging.m in Sources */,
 				34A58E881DBB6984000B2DE4 /* ViewController.swift in Sources */,
+				34A58EB81DBBDCCD000B2DE4 /* Errors.swift in Sources */,
 				34A58E861DBB6984000B2DE4 /* AppDelegate.swift in Sources */,
+				34A58EA41DBBD015000B2DE4 /* Folder.swift in Sources */,
+				34A58EB61DBBDBFF000B2DE4 /* JSONProcess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +347,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = CBMDJ4F8QJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -325,6 +357,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edugonzlz.scoops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "scoops/scoops-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -333,6 +367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = CBMDJ4F8QJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -342,6 +377,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edugonzlz.scoops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "scoops/scoops-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

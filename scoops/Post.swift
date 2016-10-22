@@ -14,18 +14,17 @@ class Post {
     // MARK: - stored properties
     var title: String
     var body: String?
-    var photoURL: String?
+    var photoURL: URL?
     var location: (Double, Double)?
     var author: String
     var publicated: Bool = false
+    var score: Int = 0
     var creationDate: Date = Date()
 
     // MARK: - computed properties
     var photo: UIImage {
         get {
-            guard let urlString = self.photoURL,
-                let url = URL(string: urlString),
-                let data = NSData(contentsOf: url) else {
+            guard let data = NSData(contentsOf: photoURL!) else {
                     return UIImage(named: "")!
             }
             return UIImage(data: data as Data)!
@@ -34,10 +33,11 @@ class Post {
 
     init(title:String,
         body:String,
-        photoURL:String,
+        photoURL:URL,
         location:(Double,Double),
         author:String,
         publicated:Bool,
+        score: Int,
         creationDate:Date) {
 
         self.title = title
@@ -49,6 +49,10 @@ class Post {
     }
 
 //    convenience init(dictionary: NSDictionary){
+//
+//        
+//
+//
 //
 //
 //
