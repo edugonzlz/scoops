@@ -12,15 +12,15 @@ typealias PostsArray = [Post]
 typealias JSONObject = AnyObject
 typealias JSONDictionary = [String: JSONObject]
 
-let azureServiceURL = "http://edu-kc-scoops.azurewebsites.net"
+let pruebaURL = "http://kc-mymobileapp.azurewebsites.net"
+let azureServiceURL = "http://edu-scoops.azurewebsites.net"
 let client: MSClient = MSClient(applicationURL: URL(string:azureServiceURL)!)
 
-let postsKey = "posts"
+let postsTableKey = "Posts"
 
 let titleKEY = "title"
 let bodyKEY = "body"
 let photoURLKEY = "photoURL"
-let locationKEY = "location"
 let latitudeKEY = "latitude"
 let longitudeKEY = "longitude"
 let authorKEY = "author"

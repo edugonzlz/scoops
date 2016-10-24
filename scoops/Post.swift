@@ -30,6 +30,7 @@ class Post {
             return UIImage(data: data as Data)!
         }
     }
+    
 
     init(title:String,
         body:String,

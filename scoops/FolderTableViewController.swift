@@ -1,0 +1,141 @@
+//
+//  FolderTableViewController.swift
+//  scoops
+//
+//  Created by Edu González on 24/10/16.
+//  Copyright © 2016 Edu González. All rights reserved.
+//
+
+import UIKit
+
+class FolderTableViewController: UITableViewController {
+
+    var model = Folder()
+
+    @IBAction func insertPost(_ sender: UIBarButtonItem) {
+
+        let table = client.table(withName: postsTableKey)
+
+        let post1 = ["title": "post uno",
+                     "body": "este es el body",
+                     "author": "Edu",
+        "photoURL": "http://www.sowood.es",
+        "latitude": 5,
+        "longitude": 5,
+        "publicated": true,
+        "score": 3,
+        "creationDate":1232342342] as [String : Any]
+
+        table.insert(post1) { (results, error) in
+            if error != nil {
+                return print("Error insertando post\(error)")
+            }
+            print("resultados:\(results)")
+            
+            //        self.model.readAllPostsFromAzure()
+            self.model.readAllPostsFromAzureWithApi()
+            self.tableView.reloadData()
+        }
+
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+
+        return self.model.numberOfSections()
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+        return self.model.sectionName(forSection: section)
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        return self.model.postCount(forSection: section)
+    }
+
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let post = self.model.post(forIndexPath: indexPath)
+
+        let cellID = "cell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellID)
+        if cell == nil {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellID)
+        }
+
+        cell?.textLabel?.text = post.title
+        cell?.detailTextLabel?.text = post.author
+
+        return cell!
+    }
+
+
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    */
+
+    /*
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+    */
+
+    /*
+    // Override to support rearranging the table view.
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+
+    }
+    */
+
+    /*
+    // Override to support conditional rearranging of the table view.
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        return true
+    }
+    */
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+    // MARK: - Utils
+
+    
+}

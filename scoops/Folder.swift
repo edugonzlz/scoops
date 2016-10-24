@@ -16,6 +16,10 @@ class Folder {
     var privatePosts = PostsArray()
 
     // MARK: - Inits
+    init() {
+//        readAllPostsFromAzure()
+        readAllPostsFromAzureWithApi()
+    }
 
     // MARK: - Methods
 
@@ -23,7 +27,7 @@ class Folder {
     // TODO: - para el caso del autor hay que leer solo los propios
     func readAllPostsFromAzure() {
 
-        let postsTable = client.table(withName: postsKey)
+        let postsTable = client.table(withName: postsTableKey)
 
         postsTable.read { (results, error) in
 
@@ -52,6 +56,47 @@ class Folder {
                 }
             }
         }
+    }
+
+    func readAllPostsFromAzureWithApi() {
+        client.invokeAPI("getPosts",
+                         body: nil,
+                         httpMethod: "GET",
+                         parameters: nil,
+                         headers: nil) { (result, response, error) in
+
+                            if error != nil {
+                                return print("error invocando api getPosts:\(error)")
+                            }
+                            if let posts = result {
+
+                                let JSONDict = posts as! [JSONDictionary]
+
+                                self.allPosts.removeAll()
+                                self.privatePosts.removeAll()
+                                self.publicatedPosts.removeAll()
+
+                                for postDict in JSONDict {
+
+                                    // post es un diccionario
+                                    // inicializamos Post con cada diccionario
+                                    // y lo añadimos a nuestro array
+                                    do {
+                                        let post = try decode(postInDictionary: postDict )
+
+                                        self.allPosts.append(post)
+                                        if post.publicated {
+                                            self.publicatedPosts.append(post)
+                                        } else {
+                                            self.privatePosts.append(post)
+                                        }
+                                    } catch {
+                                        print("error creando Post:\(error)")
+                                    }
+                                }
+                            }
+        }
+
     }
 
     // numero de secciones
@@ -93,5 +138,5 @@ class Folder {
         }
         return "section"
     }
-
+    
 }

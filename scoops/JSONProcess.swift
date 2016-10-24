@@ -20,9 +20,8 @@ func decode(postInDictionary dict:JSONDictionary) throws -> Post {
         let photoURL = URL(string: stringURL) else {
             throw ScoopsError.wrongURLFormatForJSONResource
     }
-    guard let locationDict = dict[locationKEY] as? NSDictionary,
-        let latitude = locationDict[latitudeKEY] as? Double,
-        let longitude = locationDict[longitudeKEY] as? Double else {
+    guard let latitude = dict[latitudeKEY] as? Double,
+        let longitude = dict[longitudeKEY] as? Double else {
             throw ScoopsError.wrongJSONFormat
     }
     guard let author = dict[authorKEY] as? String else {
@@ -52,24 +51,24 @@ func decode(postInDictionary dict:JSONDictionary) throws -> Post {
 
 
 // metodo para crear array de Posts si nos pasan los resultados de la peticion a Azure
-func postArray(fromAzureResults items: [JSONDictionary]) -> PostsArray {
-
-    var posts = PostsArray()
-
-    for postDict in items {
-
-        // post es un diccionario
-        // inicializamos Post con cada diccionario
-        // y lo añadimos a nuestro array
-        do {
-            let post = try decode(postInDictionary: postDict)
-
-            posts.append(post)
-
-        } catch {
-            print("error creando Post:\(error)")
-        }
-    }
-
-    return posts
-}
+//func postArray(fromAzureResults items: [JSONDictionary]) -> PostsArray {
+//
+//    var posts = PostsArray()
+//
+//    for postDict in items {
+//
+//        // post es un diccionario
+//        // inicializamos Post con cada diccionario
+//        // y lo añadimos a nuestro array
+//        do {
+//            let post = try decode(postInDictionary: postDict)
+//
+//            posts.append(post)
+//
+//        } catch {
+//            print("error creando Post:\(error)")
+//        }
+//    }
+//
+//    return posts
+//}
