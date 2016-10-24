@@ -25,9 +25,5 @@ class ViewController: UIViewController {
             nextVC?.model = folder
         }
     }
-
-
-
-
 }
 

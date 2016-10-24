@@ -30,3 +30,7 @@ let creationDateKEY = "creationDate"
 
 let publicatedPostsSectionName = "Publicated Posts"
 let privatePostsSectionName = "Private Posts"
+
+let getAllPostsNotification = "Read all posts from Azure"
+
+let nc = NotificationCenter.default

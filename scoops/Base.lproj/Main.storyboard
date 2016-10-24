@@ -3,7 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -100,12 +100,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="A6L-hE-aRb">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="vx8-eC-sXd" detailTextLabel="RLN-Qv-6Oc" rowHeight="150" style="IBUITableViewCellStyleSubtitle" id="A6L-hE-aRb">
+                                <rect key="frame" x="0.0" y="92" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A6L-hE-aRb" id="E0z-TJ-1PB">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vx8-eC-sXd">
+                                            <frame key="frameInset" minX="15" minY="55" width="43" height="24"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RLN-Qv-6Oc">
+                                            <frame key="frameInset" minX="15" minY="79" width="44" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -115,18 +131,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="18c-8H-rEV">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="1z8-jF-IkV">
-                                <connections>
-                                    <segue destination="mqN-aw-FMG" kind="show" identifier="newPostSegue" id="lyl-7p-O4j"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="addDummyPost" id="p2y-rl-2UK">
-                                <connections>
-                                    <action selector="insertPost:" destination="nx5-0J-sHb" id="V2x-Xu-Cj9"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1z8-jF-IkV">
+                            <connections>
+                                <segue destination="mqN-aw-FMG" kind="show" identifier="newPostSegue" id="lyl-7p-O4j"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdT-YT-epU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -144,18 +153,69 @@
                     <view key="view" contentMode="scaleToFill" id="IcF-cC-Un4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F63-Gv-UL5">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="mCZ-Bj-udU"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="Write here..." adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tEU-yk-ukP">
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jm2-Ym-f6i">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="uWe-fK-shZ"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Add Photo" id="dIJ-RN-2Y7">
+                                        <connections>
+                                            <action selector="addPhotoButton:" destination="mqN-aw-FMG" id="9xl-Yd-fii"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="g60-1P-Y88"/>
+                                    <barButtonItem title="Cancel" id="MJI-Wg-x4x">
+                                        <connections>
+                                            <action selector="cancelPostButton:" destination="mqN-aw-FMG" id="Vmp-TN-XoV"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tEU-yk-ukP" firstAttribute="top" secondItem="F63-Gv-UL5" secondAttribute="bottom" constant="16" id="5Ji-q5-M3N"/>
+                            <constraint firstItem="F63-Gv-UL5" firstAttribute="top" secondItem="0bq-cf-DEL" secondAttribute="bottom" constant="8" id="5Xt-0l-6Jz"/>
+                            <constraint firstAttribute="trailing" secondItem="Jm2-Ym-f6i" secondAttribute="trailing" id="EoD-Ai-zX6"/>
+                            <constraint firstItem="tEU-yk-ukP" firstAttribute="trailing" secondItem="IcF-cC-Un4" secondAttribute="trailingMargin" id="Hxb-7s-MBX"/>
+                            <constraint firstItem="F63-Gv-UL5" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leadingMargin" id="UE8-ts-NfY"/>
+                            <constraint firstItem="Jm2-Ym-f6i" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leading" id="ng9-Vr-UJf"/>
+                            <constraint firstItem="JP2-nm-ezi" firstAttribute="top" secondItem="tEU-yk-ukP" secondAttribute="bottom" constant="44" id="pNP-gS-7ff"/>
+                            <constraint firstItem="tEU-yk-ukP" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leadingMargin" id="rzq-it-E7s"/>
+                            <constraint firstItem="JP2-nm-ezi" firstAttribute="top" secondItem="Jm2-Ym-f6i" secondAttribute="bottom" id="sxs-a8-1oA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="F63-Gv-UL5" secondAttribute="trailing" id="wJm-66-EFg"/>
+                        </constraints>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Add Photo" id="dIJ-RN-2Y7"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="g60-1P-Y88"/>
-                        <barButtonItem title="Cancel" id="MJI-Wg-x4x"/>
-                    </toolbarItems>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="q4W-nP-MjK">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="sj8-GR-Mn2">
+                            <connections>
+                                <action selector="savePostButton:" destination="mqN-aw-FMG" id="T4n-ak-UhS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bodyTextField" destination="tEU-yk-ukP" id="0Q1-l7-A0y"/>
+                        <outlet property="titleTextField" destination="F63-Gv-UL5" id="rhk-9o-ARz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcG-F4-I1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2732" y="47"/>
+            <point key="canvasLocation" x="2732" y="46.326836581709152"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ogN-dh-aoS">

@@ -12,33 +12,7 @@ class FolderTableViewController: UITableViewController {
 
     var model = Folder()
 
-    @IBAction func insertPost(_ sender: UIBarButtonItem) {
-
-        let table = client.table(withName: postsTableKey)
-
-        let post1 = ["title": "post uno",
-                     "body": "este es el body",
-                     "author": "Edu",
-        "photoURL": "http://www.sowood.es",
-        "latitude": 5,
-        "longitude": 5,
-        "publicated": true,
-        "score": 3,
-        "creationDate":1232342342] as [String : Any]
-
-        table.insert(post1) { (results, error) in
-            if error != nil {
-                return print("Error insertando post\(error)")
-            }
-            print("resultados:\(results)")
-            
-            //        self.model.readAllPostsFromAzure()
-            self.model.readAllPostsFromAzureWithApi()
-            self.tableView.reloadData()
-        }
-
-
-    }
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,15 +22,28 @@ class FolderTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
+        nc.addObserver(self,
+                       selector: #selector(syncWithModel),
+                       name: NSNotification.Name(rawValue: getAllPostsNotification),
+                       object: nil)
+        syncWithModel()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+
+        nc.removeObserver(self)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+
+        self.model.readAllPostsFromAzureWithApi()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func syncWithModel() {
+        self.tableView.reloadData()
+
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
 
         return self.model.numberOfSections()
@@ -78,13 +65,15 @@ class FolderTableViewController: UITableViewController {
         let post = self.model.post(forIndexPath: indexPath)
 
         let cellID = "cell"
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellID)
-        if cell == nil {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellID)
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID)
+//        if cell == nil {
+//            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellID)
+//        }
 
         cell?.textLabel?.text = post.title
         cell?.detailTextLabel?.text = post.author
+
+        
 
         return cell!
     }

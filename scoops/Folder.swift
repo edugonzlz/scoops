@@ -17,7 +17,6 @@ class Folder {
 
     // MARK: - Inits
     init() {
-//        readAllPostsFromAzure()
         readAllPostsFromAzureWithApi()
     }
 
@@ -25,39 +24,6 @@ class Folder {
 
     // leer todos los posts de Azure y guardarlos en nuestro array
     // TODO: - para el caso del autor hay que leer solo los propios
-    func readAllPostsFromAzure() {
-
-        let postsTable = client.table(withName: postsTableKey)
-
-        postsTable.read { (results, error) in
-
-            if (error != nil) {
-                return print("Error leyendo tabla:\(error)")
-            }
-            if let posts = results {
-
-                for postDict in posts.items! {
-
-                    // post es un diccionario
-                    // inicializamos Post con cada diccionario
-                    // y lo añadimos a nuestro array
-                    do {
-                        let post = try decode(postInDictionary: postDict as! JSONDictionary)
-
-                        self.allPosts.append(post)
-                        if post.publicated {
-                            self.publicatedPosts.append(post)
-                        } else {
-                            self.privatePosts.append(post)
-                        }
-                    } catch {
-                        print("error creando Post:\(error)")
-                    }
-                }
-            }
-        }
-    }
-
     func readAllPostsFromAzureWithApi() {
         client.invokeAPI("getPosts",
                          body: nil,
@@ -94,6 +60,9 @@ class Folder {
                                         print("error creando Post:\(error)")
                                     }
                                 }
+
+                                let notif = Notification.init(name: Notification.Name(rawValue: getAllPostsNotification))
+                                nc.post(notif)
                             }
         }
 
