@@ -19,10 +19,7 @@ class NewPostViewController: UIViewController {
 
         savePost()
     }
-    @IBAction func cancelPostButton(_ sender: UIBarButtonItem) {
-
-
-    }
+    
     @IBAction func addPhotoButton(_ sender: UIBarButtonItem) {
 
     }
@@ -31,12 +28,10 @@ class NewPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
 
-//        savePost()
     }
 
     func savePost() {

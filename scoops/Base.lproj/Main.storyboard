@@ -138,6 +138,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="18c-8H-rEV">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="znc-rw-BPu"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1z8-jF-IkV">
                             <connections>
                                 <segue destination="mqN-aw-FMG" kind="show" identifier="newPostSegue" id="lyl-7p-O4j"/>
@@ -185,11 +186,6 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="g60-1P-Y88"/>
-                                    <barButtonItem title="Cancel" id="MJI-Wg-x4x">
-                                        <connections>
-                                            <action selector="cancelPostButton:" destination="mqN-aw-FMG" id="Vmp-TN-XoV"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
