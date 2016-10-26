@@ -32,7 +32,7 @@ class Folder {
                          headers: nil) { (result, response, error) in
 
                             if error != nil {
-                                return print("error invocando api getPosts:\(error)")
+                                return print("💥⛈💔 Error invocando api getPosts:\(error)")
                             }
                             if let posts = result {
 
@@ -57,10 +57,10 @@ class Folder {
                                             self.privatePosts.append(post)
                                         }
                                     } catch {
-                                        print("error creando Post:\(error)")
+                                        print("💥⛈💔error creando Post:\(error)")
                                     }
                                 }
-
+                                let nc = NotificationCenter.default
                                 let notif = Notification.init(name: Notification.Name(rawValue: getAllPostsNotification))
                                 nc.post(notif)
                             }

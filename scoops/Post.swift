@@ -19,8 +19,8 @@ class Post {
     var author: String
     var publicated: Bool = false // sin publicar por defecto
     var score: Int = -1 // -1 es sin puntuar
-    var creationDate: Date 
-
+    var creationDate: Date
+    
     // MARK: - computed properties
     var photo: UIImage {
         get {
@@ -30,7 +30,14 @@ class Post {
             return UIImage(data: data as Data)!
         }
     }
-    
+    var date: String {
+        get {
+            let formater = DateFormatter()
+            formater.dateFormat = "dd/MM/yyy HH:mm"
+            return formater.string(from: creationDate)
+        }
+    }
+
 
     init(title:String,
         body:String,

@@ -33,11 +33,10 @@ func decode(postInDictionary dict:JSONDictionary) throws -> Post {
     guard let publicated = dict[publicatedKEY] as? Bool else {
         throw ScoopsError.wrongJSONFormat
     }
-    guard let dateNumber = dict[creationDateKEY] as? Double else {
+    guard let date = dict[creationDateKEY] as? Date else {
         throw ScoopsError.wrongJSONFormat
     }
-
-    let date = Date(timeIntervalSince1970: dateNumber)
+//    let date = Date(timeIntervalSince1970: dateNumber)
 
     return Post(title: title,
                 body: body,

@@ -10,6 +10,9 @@ import UIKit
 
 class NewPostViewController: UIViewController {
 
+    // MARK: - Properties
+    var editingPost = [String : Any]()
+
     // MARK: - Outlets
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextField: UITextField!
@@ -19,7 +22,7 @@ class NewPostViewController: UIViewController {
 
         savePost()
     }
-    
+
     @IBAction func addPhotoButton(_ sender: UIBarButtonItem) {
 
     }
@@ -32,11 +35,15 @@ class NewPostViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
 
+        // solo insertamos si los campos no estan vacios
+        if self.titleTextField.text != "" && self.bodyTextField.text != "" {
+            savePost()
+            insertInAzure(post: self.editingPost)
+        }
     }
 
     func savePost() {
-        if self.titleTextField.text == "" ||
-            self.bodyTextField.text == "" {
+        if self.titleTextField.text == "" || self.bodyTextField.text == "" {
 
             let alert = UIAlertController(title: nil,
                                           message: "Title and Body necessary to save",
@@ -46,32 +53,37 @@ class NewPostViewController: UIViewController {
                                        handler: nil)
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
+
         } else {
 
             guard let title = self.titleTextField.text,
                 let body = self.bodyTextField.text else {
 
-                    return print("No existen los campos")
+                    return print("💥⛈💔No existen los campos")
             }
-            let post = ["title": title,
-                        "body": body,
-                        "author": "Edu",
-                        "photoURL": "http://www.sowood.es",
-                        "latitude": 5,
-                        "longitude": 5,
-                        "publicated": false,
-                        "score": 3,
-                        "creationDate":1232342342] as [String : Any]
+            editingPost = [titleKEY: title,
+                           bodyKEY: body,
+                           authorKEY: "Edu",
+                           photoURLKEY: "https://idoitta.files.wordpress.com/2012/05/perro-disfrazado-oveja-490x406.jpg",
+                           latitudeKEY: 5,
+                           longitudeKEY: 5,
+                           publicatedKEY: false,
+                           scoreKEY:5]
 
-            let table = client.table(withName: postsTableKey)
-
-            table.insert(post) { (results, error) in
-                if error != nil {
-                    return print("Error insertando post: \(error)")
-                }
-                print("Post insertado:\(results)")
-            }
         }
+    }
+
+    func insertInAzure(post: [String: Any]) {
+
+        let table = client.table(withName: postsTableKey)
+
+        table.insert(post) { (results, error) in
+            if error != nil {
+                return print("💥⛈💔Error insertando post: \(error)")
+            }
+            print("💥⛈💔Post insertado:\(results)")
+        }
+
     }
 
     /*

@@ -10,6 +10,7 @@
 		3404B61C1DBE1CC8005F662D /* FolderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B61B1DBE1CC8005F662D /* FolderTableViewController.swift */; };
 		3427D3191DBEB2C90062CE8B /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3427D3181DBEB2C90062CE8B /* FrontViewController.swift */; };
 		3427D31B1DC0A2350062CE8B /* AuthUserProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3427D31A1DC0A2350062CE8B /* AuthUserProcess.swift */; };
+		3427D31F1DC0A5FE0062CE8B /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3427D31E1DC0A5FE0062CE8B /* PostDetailViewController.swift */; };
 		34A58E861DBB6984000B2DE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A58E851DBB6984000B2DE4 /* AppDelegate.swift */; };
 		34A58E8D1DBB6984000B2DE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34A58E8C1DBB6984000B2DE4 /* Assets.xcassets */; };
 		34A58E901DBB6984000B2DE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A58E8E1DBB6984000B2DE4 /* LaunchScreen.storyboard */; };
@@ -29,6 +30,7 @@
 		3404B61B1DBE1CC8005F662D /* FolderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderTableViewController.swift; sourceTree = "<group>"; };
 		3427D3181DBEB2C90062CE8B /* FrontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
 		3427D31A1DC0A2350062CE8B /* AuthUserProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUserProcess.swift; sourceTree = "<group>"; };
+		3427D31E1DC0A5FE0062CE8B /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		34A58E821DBB6984000B2DE4 /* scoops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scoops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34A58E851DBB6984000B2DE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34A58E8A1DBB6984000B2DE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				3404B61B1DBE1CC8005F662D /* FolderTableViewController.swift */,
 				34DA6E0D1DBE502A001F6B0C /* NewPostViewController.swift */,
 				3427D3181DBEB2C90062CE8B /* FrontViewController.swift */,
+				3427D31E1DC0A5FE0062CE8B /* PostDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3427D31B1DC0A2350062CE8B /* AuthUserProcess.swift in Sources */,
+				3427D31F1DC0A5FE0062CE8B /* PostDetailViewController.swift in Sources */,
 				34A58EB41DBBD4B4000B2DE4 /* Settings.swift in Sources */,
 				3404B61C1DBE1CC8005F662D /* FolderTableViewController.swift in Sources */,
 				3427D3191DBEB2C90062CE8B /* FrontViewController.swift in Sources */,

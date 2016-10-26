@@ -11,6 +11,7 @@ import UIKit
 class FolderTableViewController: UITableViewController {
 
     var model = Folder()
+    let nc = NotificationCenter.default
 
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -22,58 +23,44 @@ class FolderTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
+        syncWithModel()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        // cuando recibimos notificacion del cambio en el modelo resincronizamos la tabla
         nc.addObserver(self,
                        selector: #selector(syncWithModel),
                        name: NSNotification.Name(rawValue: getAllPostsNotification),
                        object: nil)
-        syncWithModel()
+        // despues de suscribirnos pedimos que descarguen los datos
+        self.model.readAllPostsFromAzureWithApi()
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
 
         nc.removeObserver(self)
     }
-    override func viewWillAppear(_ animated: Bool) {
-
-        self.model.readAllPostsFromAzureWithApi()
-    }
-
-    func syncWithModel() {
-        self.tableView.reloadData()
-
-    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-
         return self.model.numberOfSections()
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
         return self.model.sectionName(forSection: section)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return self.model.postCount(forSection: section)
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let post = self.model.post(forIndexPath: indexPath)
 
         let cellID = "cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID)
-//        if cell == nil {
-//            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellID)
-//        }
 
         cell?.textLabel?.text = post.title
         cell?.detailTextLabel?.text = post.author
-
-        
 
         return cell!
     }
@@ -95,7 +82,7 @@ class FolderTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 
@@ -114,17 +101,22 @@ class FolderTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
 
+    // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "postDetailSegue" {
+//            let path = self.tableView.indexPath(for: sender as! UITableViewCell)
+            let path = self.tableView.indexPathForSelectedRow
+            let post = self.model.post(forIndexPath: path!)
+
+            let nextVC = segue.destination as? PostDetailViewController
+            nextVC?.model = post
+        }
     }
-    */
 
     // MARK: - Utils
-
-    
+    func syncWithModel() {
+        self.tableView.reloadData()
+    }
 }

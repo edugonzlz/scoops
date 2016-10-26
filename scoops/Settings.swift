@@ -14,8 +14,7 @@ typealias JSONObject = AnyObject
 typealias JSONDictionary = [String: JSONObject]
 
 // MARK: - Service
-let pruebaURL = "http://kc-mymobileapp.azurewebsites.net"
-let azureServiceURL = "http://edu-scoops.azurewebsites.net"
+let azureServiceURL = "https://edu-scoops.azurewebsites.net"
 let client: MSClient = MSClient(applicationURL: URL(string:azureServiceURL)!)
 
 // MARK: - Tables keys
@@ -30,19 +29,17 @@ let longitudeKEY = "longitude"
 let authorKEY = "author"
 let publicatedKEY = "publicated"
 let scoreKEY = "score"
-let creationDateKEY = "creationDate"
+let creationDateKEY = "createdAt"
 
 // MARK: - TableViews
 let publicatedPostsSectionName = "Publicated Posts"
 let privatePostsSectionName = "Private Posts"
 
 // MARK: - Notifications
-let nc = NotificationCenter.default
 let getAllPostsNotification = "Read all posts from Azure"
 
 // MARK: - Login Providers
 let facebookProvider = "facebook"
-var userAuthenticated = Bool()
 
 // MARK: - UserDefaults
 let defaults = UserDefaults.standard

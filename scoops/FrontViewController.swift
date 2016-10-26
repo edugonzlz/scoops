@@ -54,10 +54,10 @@ class FrontViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "folderTableSegue" {
 
-            let nextVC = segue.destination as? FolderTableViewController
-
-            let folder = Folder.init()
-            nextVC?.model = folder
+//            let nextVC = segue.destination as? FolderTableViewController
+//
+//            let folder = Folder.init()
+//            nextVC?.model = folder
         }
     }
 
