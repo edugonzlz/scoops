@@ -17,7 +17,11 @@ class PostDetailViewController: UIViewController {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
+    @IBOutlet weak var ratingValueLabel: UILabel!
     
+    @IBAction func ratingSlider(_ sender: UISlider) {
+    }
+    @IBOutlet weak var editPostButton: UIBarButtonItem!
     @IBAction func editPostButton(_ sender: AnyObject) {
     }
     override func viewDidLoad() {
@@ -30,6 +34,12 @@ class PostDetailViewController: UIViewController {
         bodyLabel.text = model?.body
         // TODO: - score
         // location
+
+        if !(isUserAuth()) {
+            self.navigationItem.rightBarButtonItem = nil
+        } else {
+            self.navigationItem.rightBarButtonItem = self.editPostButton
+        }
     }
 
     override func didReceiveMemoryWarning() {

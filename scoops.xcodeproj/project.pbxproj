@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3404B61C1DBE1CC8005F662D /* FolderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B61B1DBE1CC8005F662D /* FolderTableViewController.swift */; };
-		3427D3191DBEB2C90062CE8B /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3427D3181DBEB2C90062CE8B /* FrontViewController.swift */; };
 		3427D31B1DC0A2350062CE8B /* AuthUserProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3427D31A1DC0A2350062CE8B /* AuthUserProcess.swift */; };
 		3427D31F1DC0A5FE0062CE8B /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3427D31E1DC0A5FE0062CE8B /* PostDetailViewController.swift */; };
 		34A58E861DBB6984000B2DE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A58E851DBB6984000B2DE4 /* AppDelegate.swift */; };
@@ -24,11 +23,11 @@
 		34A58EB81DBBDCCD000B2DE4 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A58EB71DBBDCCD000B2DE4 /* Errors.swift */; };
 		34CE5E911DBEAD8800FA972D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A58E891DBB6984000B2DE4 /* Main.storyboard */; };
 		34DA6E0F1DBE502A001F6B0C /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DA6E0D1DBE502A001F6B0C /* NewPostViewController.swift */; };
+		34E6C8961DC120310058385A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E6C8951DC120310058385A /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3404B61B1DBE1CC8005F662D /* FolderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderTableViewController.swift; sourceTree = "<group>"; };
-		3427D3181DBEB2C90062CE8B /* FrontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
 		3427D31A1DC0A2350062CE8B /* AuthUserProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUserProcess.swift; sourceTree = "<group>"; };
 		3427D31E1DC0A5FE0062CE8B /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		34A58E821DBB6984000B2DE4 /* scoops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scoops.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +47,7 @@
 		34A58EB51DBBDBFF000B2DE4 /* JSONProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONProcess.swift; sourceTree = "<group>"; };
 		34A58EB71DBBDCCD000B2DE4 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		34DA6E0D1DBE502A001F6B0C /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		34E6C8951DC120310058385A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,9 +115,9 @@
 		34A58E9C1DBB70FF000B2DE4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				34E6C8951DC120310058385A /* LoginViewController.swift */,
 				3404B61B1DBE1CC8005F662D /* FolderTableViewController.swift */,
 				34DA6E0D1DBE502A001F6B0C /* NewPostViewController.swift */,
-				3427D3181DBEB2C90062CE8B /* FrontViewController.swift */,
 				3427D31E1DC0A5FE0062CE8B /* PostDetailViewController.swift */,
 			);
 			name = Controller;
@@ -233,13 +233,13 @@
 				3427D31F1DC0A5FE0062CE8B /* PostDetailViewController.swift in Sources */,
 				34A58EB41DBBD4B4000B2DE4 /* Settings.swift in Sources */,
 				3404B61C1DBE1CC8005F662D /* FolderTableViewController.swift in Sources */,
-				3427D3191DBEB2C90062CE8B /* FrontViewController.swift in Sources */,
 				34A58EA21DBBC598000B2DE4 /* Post.swift in Sources */,
 				34A58EB21DBBD48F000B2DE4 /* bridging.m in Sources */,
 				34A58EB81DBBDCCD000B2DE4 /* Errors.swift in Sources */,
 				34A58E861DBB6984000B2DE4 /* AppDelegate.swift in Sources */,
 				34A58EA41DBBD015000B2DE4 /* Folder.swift in Sources */,
 				34A58EB61DBBDBFF000B2DE4 /* JSONProcess.swift in Sources */,
+				34E6C8961DC120310058385A /* LoginViewController.swift in Sources */,
 				34DA6E0F1DBE502A001F6B0C /* NewPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

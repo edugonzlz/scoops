@@ -13,6 +13,11 @@ class FolderTableViewController: UITableViewController {
     var model = Folder()
     let nc = NotificationCenter.default
 
+    @IBAction func loginButton(_ sender: UIBarButtonItem) {
+        checkAuth()
+    }
+    @IBOutlet weak var createPostButton: UIBarButtonItem!
+
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +29,7 @@ class FolderTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         syncWithModel()
+        checkAuth()
     }
     override func viewWillAppear(_ animated: Bool) {
         // cuando recibimos notificacion del cambio en el modelo resincronizamos la tabla
@@ -106,7 +112,6 @@ class FolderTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "postDetailSegue" {
-//            let path = self.tableView.indexPath(for: sender as! UITableViewCell)
             let path = self.tableView.indexPathForSelectedRow
             let post = self.model.post(forIndexPath: path!)
 
@@ -118,5 +123,23 @@ class FolderTableViewController: UITableViewController {
     // MARK: - Utils
     func syncWithModel() {
         self.tableView.reloadData()
+        if !(isUserAuth()) {
+            self.navigationItem.rightBarButtonItem = nil
+        } else {
+            self.navigationItem.rightBarButtonItem = self.createPostButton
+        }
+    }
+    func checkAuth() {
+        if !(isUserAuth()){
+            let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "loginModal")
+            loginVC?.modalPresentationStyle = .pageSheet
+            loginVC?.modalTransitionStyle = .flipHorizontal
+            present(loginVC!, animated: true, completion: nil)
+        }
+        if isUserAuth(){
+            let alert = UIAlertController(title: nil, message: "You´re logged", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
 }
