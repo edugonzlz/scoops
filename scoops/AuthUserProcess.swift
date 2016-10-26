@@ -18,11 +18,13 @@ func isUserAuth() -> Bool {
 
     let userID = defaults.value(forKey: userIDKey)
     let userToken = defaults.value(forKey: userFacebookToken)
+
     if userID != nil {
         client.currentUser = MSUser.init(userId: userID as! String?)
         client.currentUser?.mobileServiceAuthenticationToken = userToken as! String?
 
         return true
+
     } else {
         return false
     }

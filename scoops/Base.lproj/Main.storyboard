@@ -283,7 +283,6 @@
                                     <constraint firstAttribute="height" constant="44" id="gIt-S5-9Mq"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Score" id="W0b-g6-qm4"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="gcP-RN-1pU"/>
                                     <barButtonItem title="Map" id="9EP-2X-duu"/>
                                 </items>
@@ -346,6 +345,7 @@
                         <outlet property="dateLabel" destination="A5Z-ix-lqr" id="t3Y-LC-cHj"/>
                         <outlet property="editPostButton" destination="1z8-jF-IkV" id="cSf-9D-bHY"/>
                         <outlet property="photoView" destination="LWr-V8-dIb" id="EhN-LL-1uU"/>
+                        <outlet property="ratingSlider" destination="a48-vK-HYT" id="9Oq-IH-ufz"/>
                         <outlet property="ratingValueLabel" destination="m3s-fp-HuR" id="YYF-K1-Gjc"/>
                         <outlet property="titleLable" destination="0ih-cj-hRe" id="d4o-5O-ZDM"/>
                     </connections>

@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
                      animated: true) { (user, error) in
 
                         if error != nil {
-                            return print("Error en el login con facebook:\(error)")
+                            return print("💥⛈💔Error en el login con facebook:\(error)")
                         }
                         if user != nil {
                             saveFacebookUserInfo(user: user!)

@@ -123,6 +123,8 @@ class FolderTableViewController: UITableViewController {
     // MARK: - Utils
     func syncWithModel() {
         self.tableView.reloadData()
+
+        // Ocultamos o mostramos el boton de creacion de post segun estemos logeados
         if !(isUserAuth()) {
             self.navigationItem.rightBarButtonItem = nil
         } else {
@@ -130,12 +132,14 @@ class FolderTableViewController: UITableViewController {
         }
     }
     func checkAuth() {
+        // si no estamos autenticados presentamos la vista para hacerlo
         if !(isUserAuth()){
             let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "loginModal")
             loginVC?.modalPresentationStyle = .pageSheet
             loginVC?.modalTransitionStyle = .flipHorizontal
             present(loginVC!, animated: true, completion: nil)
         }
+        // si estamos autenticados avisamos con una alerta
         if isUserAuth(){
             let alert = UIAlertController(title: nil, message: "You´re logged", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

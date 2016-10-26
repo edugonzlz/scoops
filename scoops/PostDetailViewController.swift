@@ -10,8 +10,10 @@ import UIKit
 
 class PostDetailViewController: UIViewController {
 
+    // MARK: - Properties
     var model: Post?
 
+    // MARK: - Outlets
     @IBOutlet weak var titleLable: UILabel!
     @IBOutlet weak var photoView: UIImageView!
     @IBOutlet weak var authorLabel: UILabel!
@@ -19,11 +21,17 @@ class PostDetailViewController: UIViewController {
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var ratingValueLabel: UILabel!
     
+    @IBOutlet weak var ratingSlider: UISlider!
+    @IBOutlet weak var editPostButton: UIBarButtonItem!
+
+    // MARK: - Actions
     @IBAction func ratingSlider(_ sender: UISlider) {
     }
-    @IBOutlet weak var editPostButton: UIBarButtonItem!
+
     @IBAction func editPostButton(_ sender: AnyObject) {
     }
+
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,27 +43,13 @@ class PostDetailViewController: UIViewController {
         // TODO: - score
         // location
 
+        // Ocultamos o mostramos el boton de edicion segun estemos logeados
         if !(isUserAuth()) {
             self.navigationItem.rightBarButtonItem = nil
         } else {
             self.navigationItem.rightBarButtonItem = self.editPostButton
+            // Ocultamos el slider de rating para usuarios logeados
+            self.ratingSlider.isHidden = true
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
