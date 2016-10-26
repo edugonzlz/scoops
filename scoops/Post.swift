@@ -13,13 +13,13 @@ class Post {
 
     // MARK: - stored properties
     var title: String
-    var body: String?
+    var body: String
     var photoURL: URL?
     var location: (Double, Double)?
     var author: String
-    var publicated: Bool = false
-    var score: Int = 0
-    var creationDate: Date = Date()
+    var publicated: Bool = false // sin publicar por defecto
+    var score: Int = -1 // -1 es sin puntuar
+    var creationDate: Date 
 
     // MARK: - computed properties
     var photo: UIImage {
@@ -42,6 +42,7 @@ class Post {
         creationDate:Date) {
 
         self.title = title
+        self.body = body
         self.photoURL = photoURL
         self.location = location
         self.author = author

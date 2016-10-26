@@ -21,6 +21,7 @@ class NewPostViewController: UIViewController {
     }
     @IBAction func cancelPostButton(_ sender: UIBarButtonItem) {
 
+
     }
     @IBAction func addPhotoButton(_ sender: UIBarButtonItem) {
 
@@ -71,9 +72,9 @@ class NewPostViewController: UIViewController {
 
             table.insert(post) { (results, error) in
                 if error != nil {
-                    return print("Error insertando post\(error)")
+                    return print("Error insertando post: \(error)")
                 }
-                print("resultados:\(results)")
+                print("Post insertado:\(results)")
             }
         }
     }
