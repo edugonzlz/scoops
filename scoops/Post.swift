@@ -15,12 +15,13 @@ class Post {
     var title: String
     var body: String
     var photoURL: URL?
-    var location: (Double, Double)?
+    var location: (latitude: Double, longitude: Double)?
     var author: String
-    var publicated: Bool = false // sin publicar por defecto
+    var publicated: Bool
     var score: Int = -1 // -1 es sin puntuar
     var creationDate: Date
-    
+    var id: String
+
     // MARK: - computed properties
     var photo: UIImage {
         get {
@@ -38,7 +39,6 @@ class Post {
         }
     }
 
-
     init(title:String,
         body:String,
         photoURL:URL,
@@ -46,7 +46,8 @@ class Post {
         author:String,
         publicated:Bool,
         score: Int,
-        creationDate:Date) {
+        creationDate:Date,
+        id:String) {
 
         self.title = title
         self.body = body
@@ -55,19 +56,8 @@ class Post {
         self.author = author
         self.publicated = publicated
         self.creationDate = creationDate
+        self.id = id
     }
-
-//    convenience init(dictionary: NSDictionary){
-//
-//        
-//
-//
-//
-//
-//
-//    }
-
-
 }
 
 

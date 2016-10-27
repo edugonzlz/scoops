@@ -113,7 +113,7 @@
                                     <frame key="frameInset" width="375" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vx8-eC-sXd">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" adjustsLetterSpacingToFitWidth="YES" id="vx8-eC-sXd">
                                             <frame key="frameInset" minX="15" minY="30" width="43" height="24"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -352,6 +352,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="1z8-jF-IkV">
                             <connections>
                                 <action selector="editPostButton:" destination="J2t-9Y-5xx" id="FH6-Yb-pP2"/>
+                                <segue destination="mqN-aw-FMG" kind="show" identifier="editPostSegue" id="5WU-M0-zUj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -368,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1EM-iK-1By" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3248.8000000000002" y="823.53823088455783"/>
+            <point key="canvasLocation" x="2820" y="843"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xt9-sz-qQ9">
@@ -389,4 +390,7 @@
             <point key="canvasLocation" x="1880.8" y="37.331334332833585"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Qji-4O-O5U"/>
+    </inferredMetricsTieBreakers>
 </document>

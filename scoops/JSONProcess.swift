@@ -36,7 +36,9 @@ func decode(postInDictionary dict:JSONDictionary) throws -> Post {
     guard let date = dict[creationDateKEY] as? Date else {
         throw ScoopsError.wrongJSONFormat
     }
-//    let date = Date(timeIntervalSince1970: dateNumber)
+    guard let id = dict[idPostKey] as? String else {
+        throw ScoopsError.wrongJSONFormat
+    }
 
     return Post(title: title,
                 body: body,
@@ -45,7 +47,22 @@ func decode(postInDictionary dict:JSONDictionary) throws -> Post {
                 author: author,
                 publicated: publicated,
                 score: score,
-                creationDate: date)
+                creationDate: date,
+                id:id)
+}
+
+func decode(dictionaryInPost post: Post) -> JSONDictionary {
+
+    var dict = JSONDictionary()
+
+    dict[titleKEY] = post.title as JSONObject?
+    dict[bodyKEY] = post.body as JSONObject?
+    dict[photoURLKEY] = post.photoURL?.absoluteString as JSONObject?
+    dict[authorKEY] = post.author as JSONObject?
+    dict[publicatedKEY] = post.publicated as JSONObject?
+    dict[idPostKey] = post.id as JSONObject?
+
+    return dict
 }
 
 

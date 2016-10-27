@@ -36,13 +36,13 @@ class Folder {
                             }
                             if let posts = result {
 
-                                let JSONDict = posts as! [JSONDictionary]
+                                let JSONDicts = posts as! [JSONDictionary]
 
                                 self.allPosts.removeAll()
                                 self.privatePosts.removeAll()
                                 self.publicatedPosts.removeAll()
 
-                                for postDict in JSONDict {
+                                for postDict in JSONDicts {
 
                                     // post es un diccionario
                                     // inicializamos Post con cada diccionario

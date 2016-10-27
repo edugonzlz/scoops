@@ -30,6 +30,7 @@ let authorKEY = "author"
 let publicatedKEY = "publicated"
 let scoreKEY = "score"
 let creationDateKEY = "createdAt"
+let idPostKey = "id"
 
 // MARK: - TableViews
 let publicatedPostsSectionName = "Publicated Posts"
