@@ -35,6 +35,19 @@ class NewPostViewController: UIViewController {
         super.viewDidLoad()
 
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+        //Añadimos boton para ocultar teclado
+        let helpBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.bodyTextField.frame.width, height: 44))
+        let okButton = UIBarButtonItem(title: "OK",
+                                       style: .plain,
+                                       target: self,
+                                       action: #selector(hideKeyboard))
+        helpBar.setItems([okButton], animated: true)
+        self.titleTextField.inputAccessoryView = helpBar
+        self.bodyTextField.inputAccessoryView = helpBar
+    }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
 
@@ -61,7 +74,6 @@ class NewPostViewController: UIViewController {
 
             guard let title = self.titleTextField.text,
                 let body = self.bodyTextField.text else {
-
                     return print("💥⛈💔No existen los campos")
             }
             editingPost = [titleKEY: title,
@@ -72,12 +84,11 @@ class NewPostViewController: UIViewController {
                            longitudeKEY: 5,
                            publicatedKEY: self.makePostPublicSwitch.isOn,
                            scoreKEY:5]
-
         }
+        hideKeyboard()
     }
 
     func insertInAzure(post: [String: Any]) {
-
         let table = client.table(withName: postsTableKey)
 
         table.insert(post) { (results, error) in
@@ -86,7 +97,6 @@ class NewPostViewController: UIViewController {
             }
             print("💥⛈💔Post insertado:\(results)")
         }
-
     }
 
     /*
@@ -98,5 +108,10 @@ class NewPostViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
+
+    // MARK: - Utils
+    func hideKeyboard() {
+//        self.view.endEditing(YES)
+        self.bodyTextField.resignFirstResponder()
+    }
 }
