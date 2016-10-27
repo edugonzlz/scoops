@@ -13,6 +13,7 @@ class PostDetailViewController: UIViewController {
     // MARK: - Properties
     var model: Post?
     var postId: String?
+    let nc = NotificationCenter.default
 
     // MARK: - Outlets
     @IBOutlet weak var titleLable: UILabel!
@@ -28,7 +29,6 @@ class PostDetailViewController: UIViewController {
     // MARK: - Actions
     @IBAction func ratingSlider(_ sender: UISlider) {
     }
-
     @IBAction func editPostButton(_ sender: AnyObject) {
 
         self.performSegue(withIdentifier: "editPostSegue", sender: self)
@@ -38,7 +38,8 @@ class PostDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        syncViewModel()
+        getPost()
+//        syncViewModel()
 
         // Ocultamos o mostramos el boton de edicion segun estemos logeados
         if !(isUserAuth()) {
@@ -52,7 +53,16 @@ class PostDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        getPost(withId: self.postId!)
+        nc.addObserver(self,
+                       selector: #selector(getPost),
+                       name: Notification.Name(rawValue: postUpdated),
+                       object: nil)
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        nc.removeObserver(self)
     }
 
     // MARK: - Navigation
@@ -66,26 +76,27 @@ class PostDetailViewController: UIViewController {
     }
 
     // MARK: - Utils
-    func getPost(withId id: String) {
-
+    func getPost() {
         client.invokeAPI("getPost",
                          body: nil,
                          httpMethod: "GET",
-                         parameters: ["id": id],
+                         parameters: ["id": self.postId!],
                          headers: nil) { (result, response, error) in
                             if error != nil {
                                 return print("💥⛈💔Error recuperando post con id: \(error)")
                             }
-                            print("💥⛈💔resultado\(result)")
+                            print("💥⛈💔Recuperado post con id\(result)")
 
                             if let posts = result {
 
                                 let JSONDicts = posts as! [JSONDictionary]
                                 let postDict = JSONDicts[0]
                                 do {
-                                    let post = try decode(postInDictionary: postDict )
+                                    let post = try decode(postInDictionary: postDict)
 
                                     self.model = post
+                                    print("💥⛈💔Score:\(post.score)")
+
 
                                     self.syncViewModel()
                                 } catch {
@@ -100,7 +111,13 @@ class PostDetailViewController: UIViewController {
         authorLabel.text = model?.author
         dateLabel.text = model?.date
         bodyLabel.text = model?.body
-        // TODO: - score
+        if let score = model?.score {
+            if score < 0 {
+                ratingValueLabel.text = "-"
+            } else {
+                ratingValueLabel.text = String(score)
+            }
+        }
         // location
     }
 }

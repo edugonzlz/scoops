@@ -33,4 +33,11 @@ class LoginViewController: UIViewController {
                         }
         }
     }
+    func logout() {
+        client.logout { (error) in
+            if error != nil {
+                return print("💥⛈💔Error en el logout")
+            }
+        }
+    }
 }

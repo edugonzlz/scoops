@@ -198,11 +198,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="g60-1P-Y88"/>
                                 </items>
                             </toolbar>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Am-Xf-AZS">
-                                <connections>
-                                    <action selector="makePostPublicSwitch:" destination="mqN-aw-FMG" eventType="valueChanged" id="ihg-cb-AVn"/>
-                                </connections>
-                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Am-Xf-AZS"/>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Public Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfK-LU-P2N">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -304,30 +300,32 @@
                                 </items>
                             </toolbar>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="a48-vK-HYT">
+                                <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="ratingSlider:" destination="J2t-9Y-5xx" eventType="valueChanged" id="1Ry-xQ-1h8"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3s-fp-HuR">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3s-fp-HuR">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnC-2C-3dr">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="m3s-fp-HuR" firstAttribute="centerY" secondItem="a48-vK-HYT" secondAttribute="centerY" id="0Q7-OK-gxo"/>
                             <constraint firstItem="HDt-1g-FdO" firstAttribute="leading" secondItem="s3j-G6-cvb" secondAttribute="leadingMargin" id="19R-zx-6HE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="a48-vK-HYT" secondAttribute="trailing" id="2f6-HC-XaK"/>
                             <constraint firstItem="A5Z-ix-lqr" firstAttribute="leading" secondItem="s3j-G6-cvb" secondAttribute="leadingMargin" id="AfQ-8a-h6Z"/>
                             <constraint firstAttribute="trailing" secondItem="LWr-V8-dIb" secondAttribute="trailing" id="B0g-S3-zVy"/>
-                            <constraint firstItem="m3s-fp-HuR" firstAttribute="leading" secondItem="hnC-2C-3dr" secondAttribute="trailing" id="G5f-yc-UJL"/>
+                            <constraint firstItem="m3s-fp-HuR" firstAttribute="leading" secondItem="hnC-2C-3dr" secondAttribute="trailing" constant="10" id="G5f-yc-UJL"/>
                             <constraint firstItem="LWr-V8-dIb" firstAttribute="leading" secondItem="s3j-G6-cvb" secondAttribute="leading" id="GDy-2u-Z5C"/>
-                            <constraint firstItem="a48-vK-HYT" firstAttribute="leading" secondItem="m3s-fp-HuR" secondAttribute="trailing" constant="17" id="HPX-9r-ZIm"/>
+                            <constraint firstItem="a48-vK-HYT" firstAttribute="leading" secondItem="m3s-fp-HuR" secondAttribute="trailing" constant="10" id="HPX-9r-ZIm"/>
                             <constraint firstAttribute="trailing" secondItem="vmx-GH-uQS" secondAttribute="trailing" id="Jcc-pK-7QJ"/>
                             <constraint firstItem="hnC-2C-3dr" firstAttribute="leading" secondItem="A5Z-ix-lqr" secondAttribute="trailing" id="MYs-XF-PIC"/>
                             <constraint firstItem="0ih-cj-hRe" firstAttribute="leading" secondItem="s3j-G6-cvb" secondAttribute="leadingMargin" id="NNn-iW-qsM"/>
@@ -337,13 +335,12 @@
                             <constraint firstItem="vmx-GH-uQS" firstAttribute="top" secondItem="HDt-1g-FdO" secondAttribute="bottom" constant="8" id="Y7x-3D-1nQ"/>
                             <constraint firstItem="0ih-cj-hRe" firstAttribute="top" secondItem="Dw7-Xh-iMo" secondAttribute="bottom" constant="8" id="ZQL-oD-gL6"/>
                             <constraint firstItem="0ih-cj-hRe" firstAttribute="trailing" secondItem="s3j-G6-cvb" secondAttribute="trailingMargin" id="ZtK-6k-nQ1"/>
-                            <constraint firstItem="hnC-2C-3dr" firstAttribute="bottom" secondItem="A5Z-ix-lqr" secondAttribute="bottom" id="b85-cD-SMI"/>
                             <constraint firstItem="a48-vK-HYT" firstAttribute="top" secondItem="LWr-V8-dIb" secondAttribute="bottom" constant="8" id="cME-61-XuG"/>
+                            <constraint firstItem="hnC-2C-3dr" firstAttribute="centerY" secondItem="m3s-fp-HuR" secondAttribute="centerY" id="gUr-3S-PPi"/>
                             <constraint firstItem="HDt-1g-FdO" firstAttribute="top" secondItem="A5Z-ix-lqr" secondAttribute="bottom" constant="4" id="jDP-fM-J0t"/>
                             <constraint firstItem="HDt-1g-FdO" firstAttribute="trailing" secondItem="s3j-G6-cvb" secondAttribute="trailingMargin" id="je3-o7-2Za"/>
                             <constraint firstItem="epy-wf-IVB" firstAttribute="top" secondItem="LWr-V8-dIb" secondAttribute="bottom" constant="2" id="nOR-Ur-ROs"/>
                             <constraint firstItem="A5Z-ix-lqr" firstAttribute="top" secondItem="epy-wf-IVB" secondAttribute="bottom" id="pgB-Xw-chr"/>
-                            <constraint firstItem="m3s-fp-HuR" firstAttribute="bottom" secondItem="hnC-2C-3dr" secondAttribute="bottom" id="vAF-0a-Y5b"/>
                             <constraint firstItem="LWr-V8-dIb" firstAttribute="top" secondItem="0ih-cj-hRe" secondAttribute="bottom" constant="8" id="xa8-YB-kUR"/>
                             <constraint firstItem="epy-wf-IVB" firstAttribute="leading" secondItem="s3j-G6-cvb" secondAttribute="leadingMargin" id="yBB-m1-fWl"/>
                         </constraints>
@@ -391,6 +388,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Qji-4O-O5U"/>
+        <segue reference="5WU-M0-zUj"/>
     </inferredMetricsTieBreakers>
 </document>

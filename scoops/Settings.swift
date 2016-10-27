@@ -38,6 +38,7 @@ let privatePostsSectionName = "Private Posts"
 
 // MARK: - Notifications
 let getAllPostsNotification = "Read all posts from Azure"
+let postUpdated = "Post is updated"
 
 // MARK: - Login Providers
 let facebookProvider = "facebook"

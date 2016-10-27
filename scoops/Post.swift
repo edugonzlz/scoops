@@ -18,7 +18,7 @@ class Post {
     var location: (latitude: Double, longitude: Double)?
     var author: String
     var publicated: Bool
-    var score: Int = -1 // -1 es sin puntuar
+    var score: Int?
     var creationDate: Date
     var id: String
 
@@ -55,6 +55,7 @@ class Post {
         self.location = location
         self.author = author
         self.publicated = publicated
+        self.score = score
         self.creationDate = creationDate
         self.id = id
     }

@@ -48,7 +48,7 @@ func decode(postInDictionary dict:JSONDictionary) throws -> Post {
                 publicated: publicated,
                 score: score,
                 creationDate: date,
-                id:id)
+                id: id)
 }
 
 func decode(dictionaryInPost post: Post) -> JSONDictionary {

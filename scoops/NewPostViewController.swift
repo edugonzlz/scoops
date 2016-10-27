@@ -25,8 +25,6 @@ class NewPostViewController: UIViewController {
     }
     @IBAction func addPhotoButton(_ sender: UIBarButtonItem) {
     }
-    @IBAction func makePostPublicSwitch(_ sender: UISwitch) {
-    }
 
     // MARK: - Lyfecycle
     override func viewDidLoad() {
@@ -63,16 +61,6 @@ class NewPostViewController: UIViewController {
             }
         }
     }
-
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
 
     // MARK: - Utils
     func savePost() {
@@ -123,6 +111,10 @@ class NewPostViewController: UIViewController {
                 return print("💥⛈💔Error actualizando post: \(error)")
             }
             print("💥⛈💔Post actualizado:\(results)")
+            // Notificamos de la actualizacion en azure para actualizar la vista de detalle
+            let nc = NotificationCenter.default
+            let notif = Notification(name: Notification.Name(rawValue: postUpdated))
+            nc.post(notif)
         }
     }
     func syncModelView() {

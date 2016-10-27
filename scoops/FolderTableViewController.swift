@@ -116,7 +116,6 @@ class FolderTableViewController: UITableViewController {
             let post = self.model.post(forIndexPath: path!)
 
             let nextVC = segue.destination as? PostDetailViewController
-            nextVC?.model = post
             nextVC?.postId = post.id
         }
         if segue.identifier == "newPostSegue" {
