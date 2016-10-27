@@ -17,6 +17,7 @@ class NewPostViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextField: UITextField!
 
+    @IBOutlet weak var makePostPublicSwitch: UISwitch!
     // MARK: - Actions
     @IBAction func savePostButton(_ sender: UIBarButtonItem) {
 
@@ -25,6 +26,8 @@ class NewPostViewController: UIViewController {
 
     @IBAction func addPhotoButton(_ sender: UIBarButtonItem) {
 
+    }
+    @IBAction func makePostPublicSwitch(_ sender: UISwitch) {
     }
 
     // MARK: - Lyfecycle
@@ -67,7 +70,7 @@ class NewPostViewController: UIViewController {
                            photoURLKEY: "https://idoitta.files.wordpress.com/2012/05/perro-disfrazado-oveja-490x406.jpg",
                            latitudeKEY: 5,
                            longitudeKEY: 5,
-                           publicatedKEY: false,
+                           publicatedKEY: self.makePostPublicSwitch.isOn,
                            scoreKEY:5]
 
         }

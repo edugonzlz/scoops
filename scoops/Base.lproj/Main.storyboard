@@ -113,7 +113,7 @@
                                     <frame key="frameInset" width="375" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vx8-eC-sXd">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vx8-eC-sXd">
                                             <frame key="frameInset" minX="15" minY="30" width="43" height="24"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -198,19 +198,34 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="g60-1P-Y88"/>
                                 </items>
                             </toolbar>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Am-Xf-AZS">
+                                <connections>
+                                    <action selector="makePostPublicSwitch:" destination="mqN-aw-FMG" eventType="valueChanged" id="ihg-cb-AVn"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Public Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfK-LU-P2N">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="cfK-LU-P2N" firstAttribute="bottom" secondItem="5Am-Xf-AZS" secondAttribute="bottom" id="3hT-bq-gbi"/>
                             <constraint firstItem="tEU-yk-ukP" firstAttribute="top" secondItem="F63-Gv-UL5" secondAttribute="bottom" constant="16" id="5Ji-q5-M3N"/>
                             <constraint firstItem="F63-Gv-UL5" firstAttribute="top" secondItem="0bq-cf-DEL" secondAttribute="bottom" constant="8" id="5Xt-0l-6Jz"/>
                             <constraint firstAttribute="trailing" secondItem="Jm2-Ym-f6i" secondAttribute="trailing" id="EoD-Ai-zX6"/>
                             <constraint firstItem="tEU-yk-ukP" firstAttribute="trailing" secondItem="IcF-cC-Un4" secondAttribute="trailingMargin" id="Hxb-7s-MBX"/>
+                            <constraint firstItem="5Am-Xf-AZS" firstAttribute="trailing" secondItem="IcF-cC-Un4" secondAttribute="trailingMargin" id="Ot5-Ta-rFA"/>
+                            <constraint firstItem="cfK-LU-P2N" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leadingMargin" id="Srx-Xb-SZV"/>
                             <constraint firstItem="F63-Gv-UL5" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leadingMargin" id="UE8-ts-NfY"/>
+                            <constraint firstItem="5Am-Xf-AZS" firstAttribute="top" secondItem="tEU-yk-ukP" secondAttribute="bottom" id="nLI-FQ-WmG"/>
                             <constraint firstItem="Jm2-Ym-f6i" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leading" id="ng9-Vr-UJf"/>
-                            <constraint firstItem="JP2-nm-ezi" firstAttribute="top" secondItem="tEU-yk-ukP" secondAttribute="bottom" constant="44" id="pNP-gS-7ff"/>
                             <constraint firstItem="tEU-yk-ukP" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leadingMargin" id="rzq-it-E7s"/>
                             <constraint firstItem="JP2-nm-ezi" firstAttribute="top" secondItem="Jm2-Ym-f6i" secondAttribute="bottom" id="sxs-a8-1oA"/>
+                            <constraint firstItem="Jm2-Ym-f6i" firstAttribute="top" secondItem="5Am-Xf-AZS" secondAttribute="bottom" constant="8" id="taA-Lb-tIk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="F63-Gv-UL5" secondAttribute="trailing" id="wJm-66-EFg"/>
+                            <constraint firstItem="cfK-LU-P2N" firstAttribute="top" secondItem="tEU-yk-ukP" secondAttribute="bottom" id="xF8-5j-RIe"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -223,12 +238,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bodyTextField" destination="tEU-yk-ukP" id="0Q1-l7-A0y"/>
+                        <outlet property="makePostPublicSwitch" destination="5Am-Xf-AZS" id="1kM-fb-JbP"/>
                         <outlet property="titleTextField" destination="F63-Gv-UL5" id="rhk-9o-ARz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcG-F4-I1x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3783" y="37"/>
+            <point key="canvasLocation" x="3781.5999999999999" y="36.431784107946029"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="QeN-rt-la7">
