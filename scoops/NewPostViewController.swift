@@ -62,7 +62,7 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.bodyTextField.inputAccessoryView = helpBar
     }
 
-    // MARK: - Utils
+    // MARK: - Azure
     func savePost() {
         if self.titleTextField.text == "" || self.bodyTextField.text == "" {
             self.fieldsEmptyAlert()
@@ -116,6 +116,8 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
             nc.post(notif)
         }
     }
+
+    // MARK: - Utils
     func syncModelView() {
 
         self.titleTextField.text = self.editingPost[titleKEY] as? String
