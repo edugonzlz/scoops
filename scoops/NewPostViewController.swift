@@ -65,37 +65,27 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
     // MARK: - Utils
     func savePost() {
         if self.titleTextField.text == "" || self.bodyTextField.text == "" {
-
-            let alert = UIAlertController(title: nil,
-                                          message: "Title and Body necessary to save",
-                                          preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK",
-                                       style: .default,
-                                       handler: nil)
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
+            self.fieldsEmptyAlert()
 
         } else {
-
             guard let title = self.titleTextField.text,
                 let body = self.bodyTextField.text else {
                     return print("💥⛈💔No existen los campos")
             }
 
-            // aunque quiza hay un momento mejor, lo hacemos aqui por ahora
             // subimos la imagen al Storage
             uploadBlob(toContainer: self.container, withImage: self.photoView.image!, withName: title)
-
             // obtenemos URL y guardamos en editingPost
+            let blobURL = URL(string: storageURL)?.appendingPathComponent((self.container!.name)).appendingPathComponent(title)
 
             editingPost[titleKEY] = title
             editingPost[bodyKEY] = body
             editingPost[authorKEY] = "Edu"
-            editingPost[photoURLKEY] = "https://idoitta.files.wordpress.com/2012/05/perro-disfrazado-oveja-490x406.jpg"
+            editingPost[photoURLKEY] = blobURL?.absoluteString
             editingPost[latitudeKEY] = 5
             editingPost[longitudeKEY] = 5
             editingPost[publicatedKEY] = self.makePostPublicSwitch.isOn
-            editingPost[scoreKEY] = 5
+            editingPost[scoreKEY] = -1 // por defecto estará sin valoración
         }
         hideKeyboard()
     }
@@ -141,6 +131,16 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
     func saveAlert() {
         let alert = UIAlertController(title: nil,
                                       message: "Post Saved",
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK",
+                                   style: .default,
+                                   handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    func fieldsEmptyAlert() {
+        let alert = UIAlertController(title: nil,
+                                      message: "Title and Body necessary to save",
                                       preferredStyle: .alert)
         let action = UIAlertAction(title: "OK",
                                    style: .default,

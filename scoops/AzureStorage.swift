@@ -49,21 +49,15 @@ func accessContainer(withName name: String) -> AZSCloudBlobContainer? {
     return storageClient?.containerReference(fromName: name.lowercased())
 }
 
-func uploadBlob(toContainer container: AZSCloudBlobContainer?, withImage image: UIImage, withName name: String){
+func uploadBlob(toContainer container: AZSCloudBlobContainer?, withImage image: UIImage, withName name: String) {
 
-    // crear el blob local
     let blob = container?.blockBlobReference(fromName: name)
 
-    // subir
-
     blob?.upload(from: UIImageJPEGRepresentation(image, 0.5)!, completionHandler: { (error) in
-
         if error != nil {
             print("💥⛈💔Error subiendo blob: \(error)")
         }
-
     })
-
 }
 
 

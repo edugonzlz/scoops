@@ -38,8 +38,9 @@ class PostDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // desactivamos el boton de edicion hasta que se descarga el post
+        self.editPostButton.isEnabled = false
         getPost()
-//        syncViewModel()
 
         // Ocultamos o mostramos el boton de edicion segun estemos logeados
         if !(isUserAuth()) {
@@ -105,6 +106,10 @@ class PostDetailViewController: UIViewController {
         }
     }
     func syncViewModel() {
+
+        // activamos
+        self.editPostButton.isEnabled = true
+
         titleLable.text = model?.title
         photoView.image = model?.photo
         authorLabel.text = model?.author
