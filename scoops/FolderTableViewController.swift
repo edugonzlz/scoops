@@ -77,6 +77,7 @@ class FolderTableViewController: UITableViewController {
 
         cell?.textLabel?.text = post.title
         cell?.detailTextLabel?.text = post.author
+        cell?.imageView?.image = post.photo
 
         return cell!
     }
@@ -98,12 +99,13 @@ class FolderTableViewController: UITableViewController {
 
     // MARK: - Utils
     func syncWithModel() {
-        self.tableView.reloadData()
 
         // Ocultamos o mostramos el boton de creacion de post segun estemos logeados
         if !(isUserAuth()) {
             self.navigationItem.rightBarButtonItems = []
             self.loginButton.title = "Login"
+
+            self.model.privatePosts.removeAll()
         }
         if isUserAuth() {
             let addPostButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushNewPost))
@@ -112,6 +114,7 @@ class FolderTableViewController: UITableViewController {
             // si el usuario esta logueado creamos su container para almacenar fotos
             setupStorage()
         }
+        self.tableView.reloadData()
     }
     func pushNewPost() {
 //        self.navigationItem.backBarButtonItem?.title = "Cancel"

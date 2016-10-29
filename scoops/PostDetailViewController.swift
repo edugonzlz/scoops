@@ -64,6 +64,8 @@ class PostDetailViewController: UIViewController {
         super.viewWillAppear(animated)
 
         nc.removeObserver(self)
+
+        sendRating()
     }
 
     // MARK: - Navigation
@@ -123,5 +125,19 @@ class PostDetailViewController: UIViewController {
             }
         }
         // location
+    }
+    func sendRating() {
+        client.invokeAPI("postRatingPost",
+                         body: nil,
+                         httpMethod: "PUT",
+                         parameters: ["id":self.postId!, "rating":self.ratingSlider.value],
+                         headers: nil) { (result, response, error) in
+
+                            if error != nil {
+                                return print("💥⛈💔Error enviando rating:\(error)")
+                            }
+                            print("💥⛈💔Enviado Rating:\(error)")
+        }
+
     }
 }
