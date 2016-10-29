@@ -26,7 +26,7 @@ class Post {
     var photo: UIImage {
         get {
             guard let data = NSData(contentsOf: photoURL!) else {
-                    return UIImage(named: "")!
+                    return UIImage(named: "noImage.png")!
             }
             return UIImage(data: data as Data)!
         }

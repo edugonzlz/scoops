@@ -70,6 +70,7 @@ class PostDetailViewController: UIViewController {
         if segue.identifier == "editPostSegue" {
             let nextVC = segue.destination as? NewPostViewController
 
+            nextVC?.model = self.model
             nextVC?.editingPost = decode(dictionaryInPost: self.model!)
             nextVC?.isNewPost = false
         }
@@ -95,8 +96,6 @@ class PostDetailViewController: UIViewController {
                                     let post = try decode(postInDictionary: postDict)
 
                                     self.model = post
-                                    print("💥⛈💔Score:\(post.score)")
-
 
                                     self.syncViewModel()
                                 } catch {

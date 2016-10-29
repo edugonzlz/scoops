@@ -30,6 +30,10 @@ class FolderTableViewController: UITableViewController {
 
         syncWithModel()
         checkAuth()
+        // si el usuario esta logueado creamos su container para almacenar fotos
+        if isUserAuth() {
+            setupStorage()
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         // cuando recibimos notificacion del cambio en el modelo resincronizamos la tabla
@@ -149,5 +153,11 @@ class FolderTableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
+    }
+    func setupStorage() {
+        setupAzureClient()
+        // Creamos un container para nuestro usuario
+        //Deberiamos crear un container con el nombre de usuario, que deberia ser unico
+        newContainer(withName: containerName)
     }
 }

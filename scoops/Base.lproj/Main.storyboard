@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -199,29 +200,37 @@
                                 </items>
                             </toolbar>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Am-Xf-AZS"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eDh-KS-Tve">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="Vcr-WU-Pcq"/>
+                                    <constraint firstAttribute="width" secondItem="eDh-KS-Tve" secondAttribute="height" multiplier="1:1" id="lKO-VM-oyR"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Public Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfK-LU-P2N">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cfK-LU-P2N" firstAttribute="bottom" secondItem="5Am-Xf-AZS" secondAttribute="bottom" id="3hT-bq-gbi"/>
+                            <constraint firstItem="Jm2-Ym-f6i" firstAttribute="top" secondItem="eDh-KS-Tve" secondAttribute="bottom" id="3vF-b5-gl8"/>
                             <constraint firstItem="tEU-yk-ukP" firstAttribute="top" secondItem="F63-Gv-UL5" secondAttribute="bottom" constant="16" id="5Ji-q5-M3N"/>
                             <constraint firstItem="F63-Gv-UL5" firstAttribute="top" secondItem="0bq-cf-DEL" secondAttribute="bottom" constant="8" id="5Xt-0l-6Jz"/>
+                            <constraint firstItem="5Am-Xf-AZS" firstAttribute="leading" secondItem="cfK-LU-P2N" secondAttribute="trailing" constant="4" id="9ah-Q9-pSl"/>
+                            <constraint firstItem="eDh-KS-Tve" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leadingMargin" id="9zt-zh-tUQ"/>
                             <constraint firstAttribute="trailing" secondItem="Jm2-Ym-f6i" secondAttribute="trailing" id="EoD-Ai-zX6"/>
+                            <constraint firstItem="cfK-LU-P2N" firstAttribute="leading" secondItem="eDh-KS-Tve" secondAttribute="trailing" constant="8" id="GCk-ye-tjt"/>
                             <constraint firstItem="tEU-yk-ukP" firstAttribute="trailing" secondItem="IcF-cC-Un4" secondAttribute="trailingMargin" id="Hxb-7s-MBX"/>
                             <constraint firstItem="5Am-Xf-AZS" firstAttribute="trailing" secondItem="IcF-cC-Un4" secondAttribute="trailingMargin" id="Ot5-Ta-rFA"/>
-                            <constraint firstItem="cfK-LU-P2N" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leadingMargin" id="Srx-Xb-SZV"/>
                             <constraint firstItem="F63-Gv-UL5" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leadingMargin" id="UE8-ts-NfY"/>
-                            <constraint firstItem="5Am-Xf-AZS" firstAttribute="top" secondItem="tEU-yk-ukP" secondAttribute="bottom" id="nLI-FQ-WmG"/>
+                            <constraint firstItem="5Am-Xf-AZS" firstAttribute="centerY" secondItem="cfK-LU-P2N" secondAttribute="centerY" id="VyU-c2-Til"/>
+                            <constraint firstItem="eDh-KS-Tve" firstAttribute="top" secondItem="tEU-yk-ukP" secondAttribute="bottom" constant="8" id="asF-uZ-xe3"/>
+                            <constraint firstItem="cfK-LU-P2N" firstAttribute="centerY" secondItem="eDh-KS-Tve" secondAttribute="centerY" id="gLw-OK-zvf"/>
                             <constraint firstItem="Jm2-Ym-f6i" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leading" id="ng9-Vr-UJf"/>
                             <constraint firstItem="tEU-yk-ukP" firstAttribute="leading" secondItem="IcF-cC-Un4" secondAttribute="leadingMargin" id="rzq-it-E7s"/>
                             <constraint firstItem="JP2-nm-ezi" firstAttribute="top" secondItem="Jm2-Ym-f6i" secondAttribute="bottom" id="sxs-a8-1oA"/>
-                            <constraint firstItem="Jm2-Ym-f6i" firstAttribute="top" secondItem="5Am-Xf-AZS" secondAttribute="bottom" constant="8" id="taA-Lb-tIk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="F63-Gv-UL5" secondAttribute="trailing" id="wJm-66-EFg"/>
-                            <constraint firstItem="cfK-LU-P2N" firstAttribute="top" secondItem="tEU-yk-ukP" secondAttribute="bottom" id="xF8-5j-RIe"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -235,6 +244,7 @@
                     <connections>
                         <outlet property="bodyTextField" destination="tEU-yk-ukP" id="0Q1-l7-A0y"/>
                         <outlet property="makePostPublicSwitch" destination="5Am-Xf-AZS" id="1kM-fb-JbP"/>
+                        <outlet property="photoView" destination="eDh-KS-Tve" id="dJ5-Wz-AY2"/>
                         <outlet property="titleTextField" destination="F63-Gv-UL5" id="rhk-9o-ARz"/>
                     </connections>
                 </viewController>

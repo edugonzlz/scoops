@@ -8,9 +8,11 @@
 
 import UIKit
 
-class NewPostViewController: UIViewController {
+class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: - Properties
+    var model: Post?
+    var container: AZSCloudBlobContainer?
     var editingPost = [String : Any]()
     var isNewPost: Bool?
 
@@ -18,12 +20,24 @@ class NewPostViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextField: UITextField!
     @IBOutlet weak var makePostPublicSwitch: UISwitch!
+    @IBOutlet weak var photoView: UIImageView!
 
     // MARK: - Actions
     @IBAction func savePostButton(_ sender: UIBarButtonItem) {
-        savePost()
+        if isNewPost! {
+            savePost()
+            insertInAzure(post: self.editingPost)
+        }
+        if !(isNewPost!) {
+            savePost()
+            updateInAzure(post: self.editingPost)
+        }
     }
     @IBAction func addPhotoButton(_ sender: UIBarButtonItem) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.present(picker, animated: true, completion: nil)
     }
 
     // MARK: - Lyfecycle
@@ -31,6 +45,8 @@ class NewPostViewController: UIViewController {
         super.viewDidLoad()
 
         syncModelView()
+        // accedemos a nuestro container para guardar fotos
+        self.container = accessContainer(withName: containerName)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -44,22 +60,6 @@ class NewPostViewController: UIViewController {
         helpBar.setItems([okButton], animated: true)
         self.titleTextField.inputAccessoryView = helpBar
         self.bodyTextField.inputAccessoryView = helpBar
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-
-        // solo insertamos si los campos no estan vacios
-        if self.titleTextField.text != "" && self.bodyTextField.text != "" {
-            // Si es un post nuevo salvamos, si no lo es actualizamos
-            if isNewPost! {
-                savePost()
-                insertInAzure(post: self.editingPost)
-            }
-            if !(isNewPost!) {
-                savePost()
-                updateInAzure(post: self.editingPost)
-            }
-        }
     }
 
     // MARK: - Utils
@@ -81,6 +81,13 @@ class NewPostViewController: UIViewController {
                 let body = self.bodyTextField.text else {
                     return print("💥⛈💔No existen los campos")
             }
+
+            // aunque quiza hay un momento mejor, lo hacemos aqui por ahora
+            // subimos la imagen al Storage
+            uploadBlob(toContainer: self.container, withImage: self.photoView.image!, withName: title)
+
+            // obtenemos URL y guardamos en editingPost
+
             editingPost[titleKEY] = title
             editingPost[bodyKEY] = body
             editingPost[authorKEY] = "Edu"
@@ -100,6 +107,7 @@ class NewPostViewController: UIViewController {
                 return print("💥⛈💔Error insertando post: \(error)")
             }
             print("💥⛈💔Post insertado:\(results)")
+            self.saveAlert()
         }
     }
     func updateInAzure(post: [String: Any]) {
@@ -111,6 +119,7 @@ class NewPostViewController: UIViewController {
                 return print("💥⛈💔Error actualizando post: \(error)")
             }
             print("💥⛈💔Post actualizado:\(results)")
+            self.saveAlert()
             // Notificamos de la actualizacion en azure para actualizar la vista de detalle
             let nc = NotificationCenter.default
             let notif = Notification(name: Notification.Name(rawValue: postUpdated))
@@ -119,15 +128,34 @@ class NewPostViewController: UIViewController {
     }
     func syncModelView() {
 
-        // hacemos una peticion con el id de nuestro post y rellenamos los campos
         self.titleTextField.text = self.editingPost[titleKEY] as? String
         self.bodyTextField.text = self.editingPost[bodyKEY] as? String
         if !(isNewPost!) {
             self.makePostPublicSwitch.isOn = self.editingPost[publicatedKEY] as! Bool
+            self.photoView.image = self.model?.photo
         }
     }
     func hideKeyboard() {
-        //        self.view.endEditing(YES)
         self.bodyTextField.resignFirstResponder()
+    }
+    func saveAlert() {
+        let alert = UIAlertController(title: nil,
+                                      message: "Post Saved",
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK",
+                                   style: .default,
+                                   handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+
+    // MARK: - UIImagePickerViewDelegate
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : Any]) {
+
+        let image = info[UIImagePickerControllerOriginalImage]
+        self.photoView.image = image as! UIImage?
+
+        self.dismiss(animated: true, completion: nil)
     }
 }

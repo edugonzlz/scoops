@@ -47,3 +47,8 @@ let facebookProvider = "facebook"
 let defaults = UserDefaults.standard
 let userIDKey = "User Id"
 let userFacebookToken = "User Token for Facebook"
+
+// MARK: - AzureStorage
+let accountNameAzureStorage = "kcstorageedu"
+let accountKeyAzureStorage = "4PWwNP8mKmV+qivXlMQ17GZmHlQr8wIRJvG3EbBoLirHekHBKdB29W6roaNp+fjyeoUkrTTEAc8/a816w15WmA=="
+let containerName =  "Edu"
