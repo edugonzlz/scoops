@@ -93,7 +93,9 @@ class Folder {
     func post(forIndexPath indexPath: IndexPath) -> Post {
 
         if indexPath.section == 0 {
-            return self.privatePosts[indexPath.row]
+            if self.privatePosts.count != 0 {
+                return self.privatePosts[indexPath.row]
+            }
         }
         return self.publicatedPosts[indexPath.row]
     }

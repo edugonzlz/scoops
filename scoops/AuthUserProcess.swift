@@ -14,6 +14,10 @@ func saveFacebookUserInfo(user: MSUser) {
     defaults.set(user.mobileServiceAuthenticationToken, forKey: userFacebookToken)
     defaults.synchronize()
 }
+func removeFacebookUserInfo (){
+    defaults.removeObject(forKey: userIDKey)
+    defaults.removeObject(forKey: userFacebookToken)
+}
 func isUserAuth() -> Bool {
 
     let userID = defaults.value(forKey: userIDKey)

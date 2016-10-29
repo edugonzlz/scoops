@@ -10,13 +10,23 @@ import UIKit
 
 class FolderTableViewController: UITableViewController {
 
+    // MARK: - Properties
     var model = Folder()
     let nc = NotificationCenter.default
 
+    // MARK: - Outlets
+    @IBOutlet weak var loginButton: UIBarButtonItem!
+
+    // MARK: - Actions
     @IBAction func loginButton(_ sender: UIBarButtonItem) {
-        checkAuth()
+        if !(isUserAuth()) {
+            presentLoginViewController()
+        }
+        if isUserAuth() {
+            logout()
+        }
+
     }
-    @IBOutlet weak var createPostButton: UIBarButtonItem!
 
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -29,11 +39,6 @@ class FolderTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
         syncWithModel()
-        checkAuth()
-        // si el usuario esta logueado creamos su container para almacenar fotos
-        if isUserAuth() {
-            setupStorage()
-        }
     }
     override func viewWillAppear(_ animated: Bool) {
         // cuando recibimos notificacion del cambio en el modelo resincronizamos la tabla
@@ -54,15 +59,16 @@ class FolderTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.model.numberOfSections()
     }
-
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        // Cuando la seccion private esta vacia no aparece en la tabla
+        if section == 0 && self.model.postCount(forSection: section) == 0 {
+            return nil
+        }
         return self.model.sectionName(forSection: section)
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.model.postCount(forSection: section)
     }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = self.model.post(forIndexPath: indexPath)
 
@@ -75,45 +81,7 @@ class FolderTableViewController: UITableViewController {
         return cell!
     }
 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-
     // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "postDetailSegue" {
             let path = self.tableView.indexPathForSelectedRow
@@ -134,30 +102,69 @@ class FolderTableViewController: UITableViewController {
 
         // Ocultamos o mostramos el boton de creacion de post segun estemos logeados
         if !(isUserAuth()) {
-            self.navigationItem.rightBarButtonItem = nil
-        } else {
-            self.navigationItem.rightBarButtonItem = self.createPostButton
+            self.navigationItem.rightBarButtonItems = []
+            self.loginButton.title = "Login"
+        }
+        if isUserAuth() {
+            let addPostButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushNewPost))
+            self.navigationItem.rightBarButtonItem = addPostButton
+            self.loginButton.title = "Logout"
+            // si el usuario esta logueado creamos su container para almacenar fotos
+            setupStorage()
         }
     }
-    func checkAuth() {
-        // si no estamos autenticados presentamos la vista para hacerlo
-        if !(isUserAuth()){
-            let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "loginModal")
-            loginVC?.modalPresentationStyle = .pageSheet
-            loginVC?.modalTransitionStyle = .flipHorizontal
-            present(loginVC!, animated: true, completion: nil)
-        }
-        // si estamos autenticados avisamos con una alerta
-        if isUserAuth(){
-            let alert = UIAlertController(title: nil, message: "You´re logged", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
+    func pushNewPost() {
+//        self.navigationItem.backBarButtonItem?.title = "Cancel"
+        performSegue(withIdentifier: "newPostSegue", sender: self)
     }
+
     func setupStorage() {
         setupAzureClient()
         // Creamos un container para nuestro usuario
-        //Deberiamos crear un container con el nombre de usuario, que deberia ser unico
+        //Deberiamos crear un container con un nombre unico
         newContainer(withName: containerName)
     }
+    func presentLoginViewController() {
+        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "loginModal")
+        loginVC?.modalPresentationStyle = .pageSheet
+        loginVC?.modalTransitionStyle = .flipHorizontal
+        present(loginVC!, animated: true, completion: nil)
+    }
+    func logout() {
+        let alert = UIAlertController(title: nil, message: "Are you sure to Logout?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "YES", style: .destructive) { (alert: UIAlertAction!) in
+            client.logout { (error) in
+                if error != nil {
+                    return print("💥⛈💔Error en el logout")
+                }
+                removeFacebookUserInfo()
+                self.syncWithModel()
+                self.presentLoginViewController()
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    /*
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+
+    /*
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
 }

@@ -146,20 +146,15 @@
                                 <action selector="loginButton:" destination="nx5-0J-sHb" id="VJd-eI-Ve4"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dc7-Te-rQS">
-                            <connections>
-                                <action selector="editPostButton:" destination="J2t-9Y-5xx" id="HVs-Wz-R2c"/>
-                                <segue destination="mqN-aw-FMG" kind="show" identifier="newPostSegue" id="Qji-4O-O5U"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="createPostButton" destination="dc7-Te-rQS" id="2wr-Ca-Llh"/>
+                        <outlet property="loginButton" destination="acr-Yk-p06" id="5lZ-ae-HTQ"/>
+                        <segue destination="mqN-aw-FMG" kind="show" identifier="newPostSegue" id="g4Y-VX-VEE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdT-YT-epU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2820" y="37.331334332833585"/>
+            <point key="canvasLocation" x="2820" y="37"/>
         </scene>
         <!--New Post View Controller-->
         <scene sceneID="NZn-gm-dgt">
@@ -401,6 +396,6 @@
         <image name="noImage.png" width="285" height="174"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5WU-M0-zUj"/>
+        <segue reference="g4Y-VX-VEE"/>
     </inferredMetricsTieBreakers>
 </document>
