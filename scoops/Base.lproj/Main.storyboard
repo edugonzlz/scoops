@@ -200,7 +200,7 @@
                                 </items>
                             </toolbar>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Am-Xf-AZS"/>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eDh-KS-Tve">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="eDh-KS-Tve">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="Vcr-WU-Pcq"/>
                                     <constraint firstAttribute="width" secondItem="eDh-KS-Tve" secondAttribute="height" multiplier="1:1" id="lKO-VM-oyR"/>
@@ -397,6 +397,9 @@
             <point key="canvasLocation" x="1880.8" y="37.331334332833585"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="noImage.png" width="285" height="174"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5WU-M0-zUj"/>
     </inferredMetricsTieBreakers>
