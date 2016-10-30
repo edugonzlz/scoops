@@ -29,6 +29,8 @@
 		34E6C89F1DC49C630058385A /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E6C89E1DC49C630058385A /* libxml2.2.tbd */; };
 		34E6C8A11DC4A54E0058385A /* AzureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E6C8A01DC4A54E0058385A /* AzureStorage.swift */; };
 		34E6C8A51DC61B9C0058385A /* MiniPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E6C8A41DC61B9C0058385A /* MiniPost.swift */; };
+		34E6C8A81DC66CE70058385A /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E6C8A71DC66CE70058385A /* Notifications.swift */; };
+		34E6C8AA1DC677870058385A /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E6C8A91DC677870058385A /* WindowsAzureMessaging.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,10 @@
 		34E6C89E1DC49C630058385A /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		34E6C8A01DC4A54E0058385A /* AzureStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AzureStorage.swift; sourceTree = "<group>"; };
 		34E6C8A41DC61B9C0058385A /* MiniPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniPost.swift; sourceTree = "<group>"; };
+		34E6C8A61DC66B8B0058385A /* scoops.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = scoops.entitlements; sourceTree = "<group>"; };
+		34E6C8A71DC66CE70058385A /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		34E6C8A91DC677870058385A /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
+		34E6C8AC1DC678400058385A /* HubInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HubInfo.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,7 @@
 				34E6C89F1DC49C630058385A /* libxml2.2.tbd in Frameworks */,
 				34A58EA01DBB7A84000B2DE4 /* WebKit.framework in Frameworks */,
 				34A58E991DBB70B0000B2DE4 /* MicrosoftAzureMobile.framework in Frameworks */,
+				34E6C8AA1DC677870058385A /* WindowsAzureMessaging.framework in Frameworks */,
 				34E6C89D1DC49C2C0058385A /* AZSClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +102,7 @@
 		34A58E841DBB6984000B2DE4 /* scoops */ = {
 			isa = PBXGroup;
 			children = (
+				34E6C8A61DC66B8B0058385A /* scoops.entitlements */,
 				34E6C8971DC498000058385A /* Resources */,
 				34A58EB91DBC0551000B2DE4 /* Others */,
 				34A58E851DBB6984000B2DE4 /* AppDelegate.swift */,
@@ -145,6 +153,7 @@
 				34A58EB71DBBDCCD000B2DE4 /* Errors.swift */,
 				3427D31A1DC0A2350062CE8B /* AuthUserProcess.swift */,
 				34E6C8A01DC4A54E0058385A /* AzureStorage.swift */,
+				34E6C8A71DC66CE70058385A /* Notifications.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -152,6 +161,7 @@
 		34A58E9E1DBB7130000B2DE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				34E6C8A91DC677870058385A /* WindowsAzureMessaging.framework */,
 				34E6C89E1DC49C630058385A /* libxml2.2.tbd */,
 				34E6C89C1DC49C2C0058385A /* AZSClient.framework */,
 				34A58E9F1DBB7A84000B2DE4 /* WebKit.framework */,
@@ -167,6 +177,7 @@
 				34A58EB01DBBD48F000B2DE4 /* bridging.h */,
 				34A58EB11DBBD48F000B2DE4 /* bridging.m */,
 				34A58EAF1DBBD48E000B2DE4 /* scoops-Bridging-Header.h */,
+				34E6C8AC1DC678400058385A /* HubInfo.h */,
 			);
 			name = Others;
 			path = ..;
@@ -215,6 +226,14 @@
 						DevelopmentTeam = CBMDJ4F8QJ;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -255,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34E6C8A81DC66CE70058385A /* Notifications.swift in Sources */,
 				3427D31B1DC0A2350062CE8B /* AuthUserProcess.swift in Sources */,
 				34E6C8A11DC4A54E0058385A /* AzureStorage.swift in Sources */,
 				3427D31F1DC0A5FE0062CE8B /* PostDetailViewController.swift in Sources */,
@@ -315,9 +335,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.edugonzlz.scoops";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.edugonzlz.scoops";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -365,9 +387,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.edugonzlz.scoops";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.edugonzlz.scoops";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -392,6 +416,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = scoops/scoops.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CBMDJ4F8QJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -401,6 +427,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edugonzlz.scoops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "scoops/scoops-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -412,6 +440,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = scoops/scoops.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CBMDJ4F8QJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -421,6 +451,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edugonzlz.scoops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "scoops/scoops-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

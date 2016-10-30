@@ -30,6 +30,7 @@ class LoginViewController: UIViewController {
                         if user != nil {
                             saveFacebookUserInfo(user: user!)
                             self.dismiss(animated: true, completion: nil)
+                            authorizeNotifications()
                         }
         }
     }

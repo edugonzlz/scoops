@@ -5,3 +5,6 @@
 #import <MicrosoftAzureMobile/MicrosoftAzureMobile.h>
 #import <AZSClient/AZSClient.h>
 
+#import <WindowsAzureMessaging/WindowsAzureMessaging.h>
+//#import "HubInfo.h"
+

@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
+        application.applicationIconBadgeNumber = 0
                 
         return true
     }
@@ -33,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        // Called as part of the transition frovarhe background to the active state; here you can undo many of the changes made on entering the background.
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -45,5 +46,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    // MARK: - Notifications
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        deviceTokenString = deviceToken.hexString()
+        print("💥⛈💔deviceToken :\(deviceTokenString)")
+
+        let hub = SBNotificationHub(connectionString: HUBLISTENACCESS, notificationHubPath: HUBNAME)
+
+        hub?.registerNative(withDeviceToken: deviceToken, tags: nil, completion: { (error) in
+            if error != nil {
+                print("💥⛈💔Error registrando token: \(error)")
+            } else {
+                self.messageBox(title: "Registration Status", message: "Registered")
+            }
+
+        })
+    }
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+
+        print("💥⛈💔Error en el registro de notificaciones remotas")
+    }
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
+        // Lo que hacemos cuando recibimos una notificacion
+        // Podemos presentar una alerta si la recibimos mientras usamos la app
+    }
+
+    func messageBox(title: String, message: String) {
+
+        print("💥⛈💔\(title)  \(message)")
+
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+//        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension Data {
+    func hexString() -> String {
+        return self.reduce("") { string, byte in
+            string + String(format: "%02X", byte)
+        }
+    }
 }
 
