@@ -74,7 +74,7 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
 
             // subimos la imagen al Storage
-            uploadBlob(toContainer: self.container, withImage: self.photoView.image!, withName: title)
+            uploadBlob(toContainer: self.container, withImage: self.photoView.image!, withName: title + UUID().uuidString)
             // obtenemos URL y guardamos en editingPost
             let blobURL = URL(string: storageURL)?.appendingPathComponent((self.container!.name)).appendingPathComponent(title)
 
@@ -85,7 +85,6 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
             editingPost[latitudeKEY] = 5
             editingPost[longitudeKEY] = 5
             editingPost[publicatedKEY] = self.makePostPublicSwitch.isOn
-            editingPost[scoreKEY] = -1 // por defecto estará sin valoración
             editingPost[userIdKey] = userId()
         }
         hideKeyboard()
