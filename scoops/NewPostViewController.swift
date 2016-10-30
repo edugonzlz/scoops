@@ -86,6 +86,7 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
             editingPost[longitudeKEY] = 5
             editingPost[publicatedKEY] = self.makePostPublicSwitch.isOn
             editingPost[scoreKEY] = -1 // por defecto estará sin valoración
+            editingPost[userIdKey] = userId()
         }
         hideKeyboard()
     }

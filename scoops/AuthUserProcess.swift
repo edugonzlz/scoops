@@ -9,7 +9,6 @@
 import Foundation
 
 func saveFacebookUserInfo(user: MSUser) {
-
     defaults.set(user.userId, forKey: userIDKey)
     defaults.set(user.mobileServiceAuthenticationToken, forKey: userFacebookToken)
     defaults.synchronize()
@@ -20,11 +19,11 @@ func removeFacebookUserInfo (){
 }
 func isUserAuth() -> Bool {
 
-    let userID = defaults.value(forKey: userIDKey)
+    let userId = defaults.value(forKey: userIDKey)
     let userToken = defaults.value(forKey: userFacebookToken)
 
-    if userID != nil {
-        client.currentUser = MSUser.init(userId: userID as! String?)
+    if userId != nil {
+        client.currentUser = MSUser.init(userId: userId as! String?)
         client.currentUser?.mobileServiceAuthenticationToken = userToken as! String?
 
         return true
@@ -32,4 +31,9 @@ func isUserAuth() -> Bool {
     } else {
         return false
     }
+}
+func userId() -> String {
+    let userId = defaults.value(forKey: userIDKey)
+    print("💥⛈💔UserId:\(userId)")
+    return userId as! String
 }

@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: - Typealias
 typealias PostsArray = [Post]
+typealias MiniPostsArray = [MiniPost]
 typealias JSONObject = AnyObject
 typealias JSONDictionary = [String: JSONObject]
 
@@ -31,6 +32,7 @@ let publicatedKEY = "publicated"
 let scoreKEY = "score"
 let creationDateKEY = "createdAt"
 let idPostKey = "id"
+let userIdKey = "userId"
 
 // MARK: - TableViews
 let publicatedPostsSectionName = "Publicated Posts"

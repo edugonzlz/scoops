@@ -58,8 +58,6 @@ func uploadBlob(toContainer container: AZSCloudBlobContainer?, withImage image: 
             print("💥⛈💔Error subiendo blob: \(error)")
         }
     })
-
-    print("💥⛈💔BlobURI:\(blob?.storageUri)")
 }
 
 

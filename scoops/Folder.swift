@@ -11,9 +11,9 @@ import Foundation
 class Folder {
 
     // MARK: - stored properties
-    var allPosts = PostsArray()
-    var publicatedPosts = PostsArray()
-    var privatePosts = PostsArray()
+    var allPosts = MiniPostsArray()
+    var publicatedPosts = MiniPostsArray()
+    var privatePosts = MiniPostsArray()
 
     // MARK: - Inits
     init() {
@@ -48,7 +48,7 @@ class Folder {
                                     // inicializamos Post con cada diccionario
                                     // y lo añadimos a nuestro array
                                     do {
-                                        let post = try decode(postInDictionary: postDict )
+                                        let post = try decode(miniPostInDictionary: postDict )
 
                                         self.allPosts.append(post)
                                         if post.publicated {
@@ -90,7 +90,7 @@ class Folder {
     }
 
     // post para una section (publicado o NO publicado)
-    func post(forIndexPath indexPath: IndexPath) -> Post {
+    func miniPost(forIndexPath indexPath: IndexPath) -> MiniPost {
 
         if indexPath.section == 0 {
             if self.privatePosts.count != 0 {

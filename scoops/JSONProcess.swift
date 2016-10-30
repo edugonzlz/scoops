@@ -50,6 +50,31 @@ func decode(postInDictionary dict:JSONDictionary) throws -> Post {
                 creationDate: date,
                 id: id)
 }
+func decode(miniPostInDictionary dict:JSONDictionary) throws -> MiniPost {
+
+    guard let title = dict[titleKEY] as? String else {
+        throw  ScoopsError.wrongJSONFormat
+    }
+    guard let stringURL = dict[photoURLKEY] as? String,
+        let photoURL = URL(string: stringURL) else {
+            throw ScoopsError.wrongURLFormatForJSONResource
+    }
+    guard let author = dict[authorKEY] as? String else {
+        throw ScoopsError.wrongJSONFormat
+    }
+    guard let publicated = dict[publicatedKEY] as? Bool else {
+        throw ScoopsError.wrongJSONFormat
+    }
+    guard let id = dict[idPostKey] as? String else {
+        throw ScoopsError.wrongJSONFormat
+    }
+
+    return MiniPost(title: title,
+                photoURL: photoURL,
+                author: author,
+                publicated: publicated,
+                id: id)
+}
 
 func decode(dictionaryInPost post: Post) -> JSONDictionary {
 

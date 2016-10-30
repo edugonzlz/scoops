@@ -28,6 +28,7 @@
 		34E6C89D1DC49C2C0058385A /* AZSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E6C89C1DC49C2C0058385A /* AZSClient.framework */; };
 		34E6C89F1DC49C630058385A /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E6C89E1DC49C630058385A /* libxml2.2.tbd */; };
 		34E6C8A11DC4A54E0058385A /* AzureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E6C8A01DC4A54E0058385A /* AzureStorage.swift */; };
+		34E6C8A51DC61B9C0058385A /* MiniPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E6C8A41DC61B9C0058385A /* MiniPost.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		34E6C89C1DC49C2C0058385A /* AZSClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AZSClient.framework; sourceTree = "<group>"; };
 		34E6C89E1DC49C630058385A /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		34E6C8A01DC4A54E0058385A /* AzureStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AzureStorage.swift; sourceTree = "<group>"; };
+		34E6C8A41DC61B9C0058385A /* MiniPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniPost.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				34A58EA11DBBC598000B2DE4 /* Post.swift */,
 				34A58EA31DBBD015000B2DE4 /* Folder.swift */,
+				34E6C8A41DC61B9C0058385A /* MiniPost.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				34E6C8A11DC4A54E0058385A /* AzureStorage.swift in Sources */,
 				3427D31F1DC0A5FE0062CE8B /* PostDetailViewController.swift in Sources */,
 				34A58EB41DBBD4B4000B2DE4 /* Settings.swift in Sources */,
+				34E6C8A51DC61B9C0058385A /* MiniPost.swift in Sources */,
 				3404B61C1DBE1CC8005F662D /* FolderTableViewController.swift in Sources */,
 				34A58EA21DBBC598000B2DE4 /* Post.swift in Sources */,
 				34A58EB21DBBD48F000B2DE4 /* bridging.m in Sources */,

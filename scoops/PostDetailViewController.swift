@@ -40,11 +40,11 @@ class PostDetailViewController: UIViewController {
 
         // desactivamos el boton de edicion hasta que se descarga el post
         self.editPostButton.isEnabled = false
-        getPost()
 
         // Ocultamos o mostramos el boton de edicion segun estemos logeados
         if !(isUserAuth()) {
             self.navigationItem.rightBarButtonItem = nil
+            self.ratingSlider.value = 0
         } else {
             self.navigationItem.rightBarButtonItem = self.editPostButton
             // Ocultamos el slider de rating para usuarios logeados
@@ -54,6 +54,7 @@ class PostDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        getPost()
         nc.addObserver(self,
                        selector: #selector(getPost),
                        name: Notification.Name(rawValue: postUpdated),
@@ -65,7 +66,10 @@ class PostDetailViewController: UIViewController {
 
         nc.removeObserver(self)
 
-        sendRating()
+        // TODO: - deberiamos chekear que el usuario cambio el valor del slider
+        if self.ratingSlider.value > 0 && !(isUserAuth()) {
+            sendRating()
+        }
     }
 
     // MARK: - Navigation
@@ -108,10 +112,10 @@ class PostDetailViewController: UIViewController {
         }
     }
     func syncViewModel() {
-
         // activamos
-        self.editPostButton.isEnabled = true
-
+        if self.editPostButton != nil {
+           self.editPostButton.isEnabled = true
+        }
         titleLable.text = model?.title
         photoView.image = model?.photo
         authorLabel.text = model?.author
@@ -129,7 +133,7 @@ class PostDetailViewController: UIViewController {
     func sendRating() {
         client.invokeAPI("postRatingPost",
                          body: nil,
-                         httpMethod: "PUT",
+                         httpMethod: "GET",
                          parameters: ["id":self.postId!, "rating":self.ratingSlider.value],
                          headers: nil) { (result, response, error) in
 

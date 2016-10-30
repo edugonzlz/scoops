@@ -25,7 +25,6 @@ class FolderTableViewController: UITableViewController {
         if isUserAuth() {
             logout()
         }
-
     }
 
     // MARK: - LifeCycle
@@ -38,6 +37,9 @@ class FolderTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
+        self.model.privatePosts.removeAll()
+        self.model.publicatedPosts.removeAll()
+        
         syncWithModel()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +72,7 @@ class FolderTableViewController: UITableViewController {
         return self.model.postCount(forSection: section)
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let post = self.model.post(forIndexPath: indexPath)
+        let post = self.model.miniPost(forIndexPath: indexPath)
 
         let cellID = "cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID)
@@ -86,7 +88,7 @@ class FolderTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "postDetailSegue" {
             let path = self.tableView.indexPathForSelectedRow
-            let post = self.model.post(forIndexPath: path!)
+            let post = self.model.miniPost(forIndexPath: path!)
 
             let nextVC = segue.destination as? PostDetailViewController
             nextVC?.postId = post.id
@@ -99,13 +101,12 @@ class FolderTableViewController: UITableViewController {
 
     // MARK: - Utils
     func syncWithModel() {
-
         // Ocultamos o mostramos el boton de creacion de post segun estemos logeados
         if !(isUserAuth()) {
             self.navigationItem.rightBarButtonItems = []
             self.loginButton.title = "Login"
 
-            self.model.privatePosts.removeAll()
+//            self.model.privatePosts.removeAll()
         }
         if isUserAuth() {
             let addPostButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushNewPost))
