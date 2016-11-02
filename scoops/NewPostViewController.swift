@@ -74,9 +74,10 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
 
             // subimos la imagen al Storage
-            uploadBlob(toContainer: self.container, withImage: self.photoView.image!, withName: title + UUID().uuidString)
+            let name = title + UUID().uuidString
+            uploadBlob(toContainer: self.container, withImage: self.photoView.image!, withName: name)
             // obtenemos URL y guardamos en editingPost
-            let blobURL = URL(string: storageURL)?.appendingPathComponent((self.container!.name)).appendingPathComponent(title)
+            let blobURL = URL(string: storageURL)?.appendingPathComponent((self.container!.name)).appendingPathComponent(name)
 
             editingPost[titleKEY] = title
             editingPost[bodyKEY] = body
